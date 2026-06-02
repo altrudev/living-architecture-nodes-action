@@ -1,0 +1,65 @@
+name: "Living Architecture Nodes Check"
+description: "Check required Living Architecture Nodes artifacts, missing node files, dirty node risk, and export AI/dev diagnostic reports."
+author: "Valentyn Rukhaylo / Altru.dev"
+
+branding:
+  icon: "activity"
+  color: "orange"
+
+inputs:
+  workspace:
+    description: "Repository workspace path. Defaults to GITHUB_WORKSPACE."
+    required: false
+    default: ""
+  mode:
+    description: "check or export. check runs validation and writes reports. export always writes reports."
+    required: false
+    default: "check"
+  fail_on:
+    description: "Failure threshold: never, missing-required, missing-nodes, dirty-nodes, warnings."
+    required: false
+    default: "missing-required"
+  changed_only:
+    description: "When true, dirty node detection focuses on changed files in the pull request or commit range."
+    required: false
+    default: "true"
+  source_extensions:
+    description: "Comma-separated source extensions to scan."
+    required: false
+    default: ".js,.jsx,.ts,.tsx,.mjs,.cjs,.py,.cs,.java,.go,.rs,.php,.rb,.swift,.kt,.kts,.vue,.svelte,.html,.css,.yml,.yaml"
+  exclude_dirs:
+    description: "Comma-separated folder names to exclude."
+    required: false
+    default: ".git,node_modules,dist,build,out,coverage,.next,.nuxt,.turbo,.cache,vendor,.venv,venv,__pycache__,.lan-action"
+  export_path:
+    description: "Output directory for diagnostic exports."
+    required: false
+    default: ".lan-action"
+  write_summary:
+    description: "Write GitHub step summary when possible."
+    required: false
+    default: "true"
+  pro_license_key:
+    description: "Reserved for future Pro license unlock. Not validated in v0.1.0."
+    required: false
+    default: ""
+
+outputs:
+  health_score:
+    description: "Computed repository architecture-memory health score."
+  status:
+    description: "healthy, warning, or failed."
+  missing_required_count:
+    description: "Number of missing required root artifacts."
+  missing_node_count:
+    description: "Number of source files without matching .node.md files."
+  dirty_node_count:
+    description: "Number of changed source files whose matching .node.md file was not changed."
+  diagnostic_json:
+    description: "Path to diagnostic JSON export."
+  diagnostic_markdown:
+    description: "Path to diagnostic Markdown export."
+
+runs:
+  using: "node20"
+  main: "src/index.js"

@@ -1,0 +1,19 @@
+Living Architecture Nodes Action Use License
+Copyright (c) 2026 Valentyn Rukhaylo / Altru.dev
+
+This repository contains the official Living Architecture Nodes GitHub Action wrapper.
+
+Permission is granted to use this action by referencing the official repository in GitHub Actions workflows, subject to the following conditions:
+
+1. You may run the action in GitHub Actions workflows using the official repository reference, for example:
+   uses: altrudev/living-architecture-nodes-action@v0.1.0
+
+2. You may inspect the source code for security, compatibility, and operational review.
+
+3. You may not copy, redistribute, repackage, sublicense, sell, or publish modified versions of this action or substantial portions of its source code as a competing product or service without written permission.
+
+4. You may not use Living Architecture Nodes as a product name, service name, company name, certification mark, endorsement mark, or source-identifying brand in a way that implies affiliation with, sponsorship by, or endorsement from Valentyn Rukhaylo / Altru.dev.
+
+5. Accurate descriptive references are allowed, such as "compatible with the Living Architecture Nodes specification" or "uses the Living Architecture Nodes file structure," provided they do not imply official status or endorsement.
+
+THE ACTION IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHOR OR COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM USE OF THE ACTION.
