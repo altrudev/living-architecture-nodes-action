@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run Living Architecture Nodes Check
-        uses: altrudev/living-architecture-nodes-action@v0.1.0
+        uses: altrudev/living-architecture-nodes-action@v0.1.1
         with:
           mode: check
           fail_on: never
