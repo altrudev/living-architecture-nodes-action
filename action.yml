@@ -61,5 +61,5 @@ outputs:
     description: "Path to diagnostic Markdown export."
 
 runs:
-  using: "node20"
+  using: "node24"
   main: "src/index.js"
