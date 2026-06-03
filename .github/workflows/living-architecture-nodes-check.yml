@@ -1,0 +1,25 @@
+name: Living Architecture Nodes Check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  lan-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Living Architecture Nodes Check
+        uses: altrudev/living-architecture-nodes-action@v0.1.0
+        with:
+          mode: check
+          fail_on: never
+          changed_only: false
