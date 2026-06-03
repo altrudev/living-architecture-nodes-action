@@ -103,6 +103,7 @@ The initial workflow run succeeded but reported this workflow file as missing a 
 - Enabling strict failure thresholds before node coverage is complete
 
 - - Updated workflow Action reference from `altrudev/living-architecture-nodes-action@v0.1.0` to `altrudev/living-architecture-nodes-action@v0.1.1` after the Action runtime compatibility release.
+  - - Added `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true` to opt the workflow into the Node 24 JavaScript Action runtime and remove the Node 20 deprecation warning from `actions/checkout@v4`.
 
 ### Suspected hidden coupling
 
