@@ -102,6 +102,8 @@ The initial workflow run succeeded but reported this workflow file as missing a 
 - Expanding scanned file extensions without adding node coverage
 - Enabling strict failure thresholds before node coverage is complete
 
+- - Updated workflow Action reference from `altrudev/living-architecture-nodes-action@v0.1.0` to `altrudev/living-architecture-nodes-action@v0.1.1` after the Action runtime compatibility release.
+
 ### Suspected hidden coupling
 
 Workflow health is coupled to the Living Architecture Nodes Action version, GitHub Actions runtime support, and repository artifact layout.
