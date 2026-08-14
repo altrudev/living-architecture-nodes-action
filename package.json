@@ -7,7 +7,9 @@
   "main": "src/index.js",
   "scripts": {
     "check": "node src/index.js",
-    "self-check": "node src/index.js --local-self-check"
+    "self-check": "node src/index.js --local-self-check",
+    "test:conformance": "node --test tests/scanner-conformance.test.js",
+    "gate": "npm run self-check && npm run test:conformance"
   },
   "engines": {
     "node": ">=20"
