@@ -1,59 +1,67 @@
 'use strict';
 
-function plural(count, singular, pluralWord = `${singular}s`) {
-  return count === 1 ? singular : pluralWord;
+function plural(count, singular, pluralWord) {
+  return count === 1 ? singular : (pluralWord || singular + 's');
 }
 
 function renderList(items, renderItem) {
   if (!items || items.length === 0) return '- None\n';
-  return items.map((item) => `- ${renderItem ? renderItem(item) : item}`).join('\n') + '\n';
+  return items.map((item) => '- ' + (renderItem ? renderItem(item) : item)).join('\n') + '\n';
 }
 
-function renderMarkdownSummary(check, scan) {
+function code(value) {
+  return String.fromCharCode(96) + value + String.fromCharCode(96);
+}
+
+function renderMarkdownSummary(check) {
   const lines = [];
   lines.push('# Living Architecture Nodes Diagnostic Summary');
   lines.push('');
-  lines.push(`Generated: ${check.timestamp}`);
+  lines.push('Generated: ' + check.timestamp);
   lines.push('');
-  lines.push('## Status');
+  lines.push('## Basic CI status');
   lines.push('');
-  lines.push(`- Status: **${check.status.toUpperCase()}**`);
-  lines.push(`- Health score: **${check.healthScore}/100**`);
-  lines.push(`- Source files scanned: ${check.sourceFileCount}`);
-  lines.push(`- Node files found: ${check.nodeFileCount}`);
-  lines.push(`- Missing required artifacts: ${check.missingRequired.length}`);
-  lines.push(`- Missing nodes: ${check.missingNodes.length}`);
-  lines.push(`- Dirty nodes: ${check.dirtyNodes.length}`);
-  lines.push(`- Orphan nodes: ${check.orphanNodes.length}`);
+  lines.push('- Status: **' + check.status.toUpperCase() + '**');
+  lines.push('- Maintenance score: **' + check.healthScore + '/100** (heuristic, not a semantic architecture verdict)');
+  lines.push('- Verification scope: **' + check.verification.scope + '**');
+  lines.push('- Semantic architecture: **' + check.verification.semanticArchitecture.status + '**');
+  lines.push('- Source files scanned: ' + check.sourceFileCount);
+  lines.push('- Node files found: ' + check.nodeFileCount);
+  lines.push('- Missing required artifacts: ' + check.missingRequired.length);
+  lines.push('- Missing nodes: ' + check.missingNodes.length);
+  lines.push('- Dirty nodes: ' + check.dirtyNodes.length);
+  lines.push('- Orphan nodes: ' + check.orphanNodes.length);
   lines.push('');
   lines.push('## Missing required artifacts');
   lines.push('');
   lines.push(renderList(check.missingRequired));
   lines.push('## Missing node files');
   lines.push('');
-  lines.push(renderList(check.missingNodes, (item) => `\`${item.sourcePath}\` needs \`${item.nodePath}\``));
+  lines.push(renderList(check.missingNodes, (item) => code(item.sourcePath) + ' needs ' + code(item.nodePath)));
   lines.push('## Dirty node risks');
   lines.push('');
-  lines.push(renderList(check.dirtyNodes, (item) => `\`${item.sourcePath}\` changed without matching node update \`${item.nodePath}\``));
+  lines.push(renderList(check.dirtyNodes, (item) => code(item.sourcePath) + ' changed without matching node update ' + code(item.nodePath)));
   lines.push('## Orphan node files');
   lines.push('');
-  lines.push(renderList(check.orphanNodes, (item) => `\`${item}\``));
+  lines.push(renderList(check.orphanNodes, (item) => code(item)));
   lines.push('## Suggested investigation order');
   lines.push('');
 
   if (check.missingRequired.length > 0) {
-    lines.push(`1. Add missing required ${plural(check.missingRequired.length, 'artifact')}: ${check.missingRequired.map((item) => `\`${item}\``).join(', ')}.`);
+    lines.push('1. Add missing required ' + plural(check.missingRequired.length, 'artifact') + ': ' + check.missingRequired.map(code).join(', ') + '.');
   } else if (check.missingNodes.length > 0) {
-    lines.push('1. Generate missing `.node.md` companion files for source modules.');
+    lines.push('1. Add missing ' + code('.node.md') + ' companion files for source modules.');
   } else if (check.dirtyNodes.length > 0) {
-    lines.push('1. Review changed source files and update the matching `.node.md` diagnostic/dynamic layers.');
+    lines.push('1. Review changed source files and update the matching ' + code('.node.md') + ' diagnostic/dynamic layers.');
   } else {
-    lines.push('1. No immediate architecture-memory blockers detected.');
+    lines.push('1. No immediate basic architecture-memory blockers detected.');
   }
 
-  lines.push('2. Review `ARCH.md` for intent vs reality gaps.');
-  lines.push('3. Review `NERVE.md` for cascade risks and recurring bug patterns.');
-  lines.push('4. Update `CHANGELOG.node.md` after cross-cutting changes.');
+  lines.push('2. Review ' + code('ARCH.md') + ' for intent vs reality gaps.');
+  lines.push('3. Review ' + code('NERVE.md') + ' for cascade risks and recurring bug patterns.');
+  lines.push('4. Update ' + code('CHANGELOG.node.md') + ' after cross-cutting changes.');
+  lines.push('');
+  lines.push('> NOT_VERIFIED means that semantic architecture verification was not executed. It does not mean failed or unsafe.');
   lines.push('');
   lines.push('---');
   lines.push('Generated by Living Architecture Nodes Action.');
@@ -63,17 +71,16 @@ function renderMarkdownSummary(check, scan) {
 
 function renderConsoleSummary(check) {
   return [
-    `Living Architecture Nodes: ${check.status.toUpperCase()} (${check.healthScore}/100)`,
-    `Sources: ${check.sourceFileCount}`,
-    `Nodes: ${check.nodeFileCount}`,
-    `Missing required: ${check.missingRequired.length}`,
-    `Missing nodes: ${check.missingNodes.length}`,
-    `Dirty nodes: ${check.dirtyNodes.length}`,
-    `Orphan nodes: ${check.orphanNodes.length}`
+    'Living Architecture Nodes: ' + check.status.toUpperCase() + ' (' + check.healthScore + '/100 basic maintenance score)',
+    'Verification scope: ' + check.verification.scope,
+    'Semantic architecture: ' + check.verification.semanticArchitecture.status,
+    'Sources: ' + check.sourceFileCount,
+    'Nodes: ' + check.nodeFileCount,
+    'Missing required: ' + check.missingRequired.length,
+    'Missing nodes: ' + check.missingNodes.length,
+    'Dirty nodes: ' + check.dirtyNodes.length,
+    'Orphan nodes: ' + check.orphanNodes.length
   ].join('\n');
 }
 
-module.exports = {
-  renderMarkdownSummary,
-  renderConsoleSummary
-};
+module.exports = { renderMarkdownSummary, renderConsoleSummary };
