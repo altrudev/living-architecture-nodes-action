@@ -21,7 +21,7 @@
 
 ### Release state
 
-Marketplace publication is not considered complete until GitHub's release UI validates the Action and the Marketplace publication checkbox is selected.
+Marketplace publication verified live. Exact tag `v0.1.2` is pinned to `c7d44c31bb7631d8aec357b94803d89246555e7e`. Moving aliases `v0.1` and `v0` are authorized to target that exact commit.
 
 ## 2026-06-03 — v0.1.1 Node 24 maintenance
 
