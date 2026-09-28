@@ -1,40 +1,23 @@
 # action.yml — Living Architecture Node
 
-## Static layer
-
-### Purpose and responsibility boundary
+## Purpose
 
 Public GitHub Action metadata and execution contract for the free Living Architecture Nodes CI surface.
 
-### Contracts
+## Contracts
 
-- exactly one root Action metadata file;
+- one root Action metadata file;
 - Node 24 runtime;
-- no raw license-key or paid entitlement input;
-- basic CI outputs are distinct from semantic verification;
+- no raw paid-license input;
+- basic CI outputs stay distinct from semantic verification;
 - no remote service or telemetry requirement.
 
-## Dynamic layer
-
-### Current stability state
+## Current state
 
 v0.1.1 Marketplace candidate.
 
-### Recent mutations
+Recent changes: removed the reserved license input, added verification scope outputs, and clarified repository-bound workspace/export paths.
 
-- Removed the reserved raw `pro_license_key` input.
-- Added `verification_scope` and `semantic_architecture_status` outputs.
-- Clarified workspace/export paths must remain inside `GITHUB_WORKSPACE`.
+## Regression triggers
 
-## Security notes
-
-The Action itself does not request GitHub API authority or repository write permission.
-
-## Diagnostic layer
-
-### Regression triggers
-
-- adding a credential/license-key input;
-- changing public outputs without matching docs;
-- adding a network dependency;
-- changing the runtime or entrypoint without release review.
+Public outputs drift from runtime behavior; network access appears; a credential input is added; runtime/entrypoint changes without release review.
