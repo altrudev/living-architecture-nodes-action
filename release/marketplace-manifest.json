@@ -5,9 +5,15 @@
   "repository_visibility_required": "public",
   "marketplace_type": "github-action",
   "marketplace_name": "Living Architecture Nodes Check",
+  "marketplace_listing_url": "https://github.com/marketplace/actions/living-architecture-nodes-check",
+  "marketplace_categories": [
+    "code-quality",
+    "utilities"
+  ],
   "version": "0.1.2",
   "release_tag": "v0.1.2",
-  "floating_tags_planned": [
+  "release_commit": "c7d44c31bb7631d8aec357b94803d89246555e7e",
+  "floating_tags": [
     "v0.1",
     "v0"
   ],
@@ -17,18 +23,11 @@
   "telemetry": false,
   "source_contents_uploaded": false,
   "release_channel": "stable-basic",
-  "marketplace_publish_allowed": false,
-  "marketplace_publish_blockers": [
-    "GitHub Marketplace release UI must validate the action name and metadata with Everything looks good",
-    "GitHub Marketplace Developer Agreement must be accepted by the repository owner",
-    "Publish this Action to the GitHub Marketplace must be selected on the v0.1.2 release",
-    "Primary and optional secondary Marketplace categories must be selected",
-    "Final release must use two-factor authenticated GitHub publication"
-  ],
-  "recommended_categories": [
-    "Code quality",
-    "Utilities"
-  ],
+  "marketplace_publication_verified": true,
+  "marketplace_publish_allowed": true,
+  "marketplace_publish_blockers": [],
+  "compatibility_aliases_ready": true,
+  "alias_target_commit": "c7d44c31bb7631d8aec357b94803d89246555e7e",
   "release_notes_source": "CHANGELOG.md",
   "privacy_source": "PRIVACY.md",
   "support_source": "SUPPORT.md",

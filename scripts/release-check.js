@@ -43,8 +43,13 @@ if (manifest.pricing !== 'free') failures.push('GitHub Action Marketplace releas
 if (manifest.paid_entitlements_enabled !== false) failures.push('paid entitlements must not be enabled in the Action');
 if (manifest.runtime_network_access !== false) failures.push('runtime network access must remain false');
 if (manifest.telemetry !== false) failures.push('telemetry must remain false');
-if (manifest.marketplace_publish_allowed !== false) failures.push('Marketplace publish flag must stay blocked until GitHub UI validation is completed');
-if (!Array.isArray(manifest.marketplace_publish_blockers) || manifest.marketplace_publish_blockers.length === 0) failures.push('Marketplace blockers must be explicit');
+if (manifest.marketplace_publication_verified !== true) failures.push('Marketplace publication must be explicitly verified');
+if (manifest.marketplace_publish_allowed !== true) failures.push('Marketplace publication gate must be open after live listing verification');
+if (!Array.isArray(manifest.marketplace_publish_blockers) || manifest.marketplace_publish_blockers.length !== 0) failures.push('Marketplace publish blockers must be empty after verification');
+if (manifest.release_commit !== 'c7d44c31bb7631d8aec357b94803d89246555e7e') failures.push('verified release commit drifted');
+if (manifest.alias_target_commit !== manifest.release_commit) failures.push('compatibility alias target must equal verified release commit');
+if (JSON.stringify(manifest.floating_tags) !== JSON.stringify(['v0.1','v0'])) failures.push('compatibility alias set drifted');
+if (manifest.marketplace_listing_url !== 'https://github.com/marketplace/actions/living-architecture-nodes-check') failures.push('Marketplace listing URL drifted');
 
 for (const rel of ['src/workspace-authority.node.md','test/checker.test.node.md']) {
   const value = text(rel);
@@ -108,4 +113,5 @@ console.log('Pricing: FREE');
 console.log('Runtime network access: none detected');
 console.log('Telemetry: none');
 console.log('Raw license-key input: absent');
-console.log('Marketplace publication gate: BLOCKED pending GitHub release UI validation');
+console.log('Marketplace publication: VERIFIED LIVE');
+console.log('Compatibility aliases: v0.1, v0 → ' + manifest.alias_target_commit);
