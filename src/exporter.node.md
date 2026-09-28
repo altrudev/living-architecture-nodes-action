@@ -1,28 +1,20 @@
 # src/exporter.js — Living Architecture Node
 
-## Static layer
-
-### Purpose
+## Purpose
 
 Writes local JSON and Markdown diagnostic reports.
 
-### Contracts
+## Contracts
 
 - output stays inside the authorized workspace export directory;
-- schema is `living-architecture-nodes-action-diagnostic@0.1.1`;
-- payload is passed through defensive redaction;
-- no source file contents are uploaded or transmitted.
+- schema is living-architecture-nodes-action-diagnostic@0.1.1;
+- diagnostic payload passes through defensive redaction;
+- no repository content is transmitted to a remote service.
 
-## Dynamic layer
-
-### Current stability state
+## Current state
 
 v0.1.1 Marketplace candidate.
 
-## Diagnostic layer
+## Regression triggers
 
-### Regression triggers
-
-- schema/version drift;
-- export outside authorized workspace;
-- adding remote transmission.
+Schema/version drift, export outside the authorized workspace, or remote transmission is introduced.
