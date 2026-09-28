@@ -1,70 +1,52 @@
 # NERVE.md — Living Architecture Nodes Action Hub
 
-In this repository, `NERVE.md` is the central hub file. NERVE is used descriptively as an abbreviation for Node Evidence & Regression Visibility Engine.
+## Current release state
 
-## Dirty flags
-
-No dirty nodes at v0.1.0 package creation.
+v0.1.1 Marketplace candidate.
 
 ## Cascade map
 
-| Flagged node | At-risk dependents | Reason |
+| Node | At-risk dependents | Reason |
 |---|---|---|
-| `src/config.js` | `src/index.js`, `action.yml` | Input names and defaults must align. |
-| `src/scanner.js` | `src/checker.js`, `src/exporter.js`, `src/summary.js` | Scan shape feeds checks and reports. |
-| `src/git.js` | `src/checker.js` | Dirty-node detection depends on changed-file output. |
-| `src/summary.js` | `src/exporter.js`, GitHub step summary | Markdown output is reused in multiple contexts. |
-| `src/github-io.js` | `src/index.js` | Output/annotation formatting affects GitHub Action UX. |
+| `action.yml` | README, Marketplace listing, runtime outputs | Public contract |
+| `src/config.js` | scanner/exporter/index | Input and authority normalization |
+| `src/workspace-authority.js` | config/export path | Filesystem confinement |
+| `src/scanner.js` | checker/exporter/summary | Scan shape |
+| `src/git.js` | checker | Changed-file evidence |
+| `src/checker.js` | index/exporter/summary | Status and verification semantics |
+| `src/summary.js` | exporter/step summary | User-facing claims |
+| `scripts/release-check.js` | Marketplace promotion | Release gate |
 
-## Cross-node pattern detection
+## 2026-09-28 Frequency Marketplace sweep
 
-No repeated bug class observed yet.
+- Removed unused raw `pro_license_key`.
+- Kept the Action permanently useful and Free.
+- Added explicit `basic-local-ci` verification scope.
+- Added semantic architecture `NOT_VERIFIED` semantics.
+- Added repository/export authority confinement.
+- Added traversal, absolute-path, symlink, checker, and redaction regression tests.
+- Added Marketplace release/privacy/security/support documentation.
+- Added a deterministic release preflight.
 
-## Temporal pattern log
+## Troubleshooting
 
-| Date | Change | Later effect |
-|---|---|---|
-| 2026-06-02 | Initial GitHub Action wrapper created. | Baseline established. |
+### Changed-file drift missing
 
-## Troubleshooting playbooks
+1. Use `actions/checkout` with `fetch-depth: 0`.
+2. Verify pull-request/base history exists.
+3. Inspect `src/git.js`.
+4. Remember: unavailable change history reduces evidence; it does not create semantic verification.
 
-### Workflow fails even though repo looks compliant
+### Export rejected
 
-1. Confirm `ARCH.md`, `NERVE.md`, and `CHANGELOG.node.md` exist at repository root.
-2. Check `source_extensions` includes the source language in use.
-3. Check excluded directories are not hiding intended source files.
-4. Confirm `fail_on` threshold is not stricter than intended.
-5. Review `.lan-action/living-architecture-diagnostic.md`.
+1. Confirm `export_path` is repository-relative.
+2. Confirm no parent traversal.
+3. Confirm the path does not traverse a symlink outside the workspace.
 
-### Dirty nodes are not detected in pull requests
+## Regression triggers
 
-1. Confirm `actions/checkout` uses `fetch-depth: 0`.
-2. Confirm the workflow runs on `pull_request` or has enough git history.
-3. Review `src/git.js` behavior.
-4. Compare changed source files with changed `.node.md` files manually.
-
-### Missing nodes count is too high
-
-1. Review `source_extensions`.
-2. Add generated folders to `exclude_dirs`.
-3. Confirm source-to-node naming convention is acceptable for the repository.
-
-## Health scores
-
-| Node | Score | Status |
-|---|---:|---|
-| `action.yml` | 95 | healthy |
-| `src/index.js` | 95 | healthy |
-| `src/config.js` | 95 | healthy |
-| `src/fs-utils.js` | 95 | healthy |
-| `src/scanner.js` | 95 | healthy |
-| `src/git.js` | 90 | watch |
-| `src/checker.js` | 95 | healthy |
-| `src/redactor.js` | 90 | watch |
-| `src/exporter.js` | 95 | healthy |
-| `src/summary.js` | 95 | healthy |
-| `src/github-io.js` | 95 | healthy |
-
-## Likely culprit nodes
-
-None currently flagged.
+- Action gains repository write/API permission it does not need.
+- Any raw license secret reappears.
+- Runtime network access appears.
+- Health score is described as semantic architecture proof.
+- Marketplace release is claimed without the GitHub Marketplace checkbox/listing evidence.
