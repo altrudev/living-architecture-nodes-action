@@ -10,7 +10,7 @@ function computeHealthScore({ missingRequired, missingNodes, dirtyNodes, orphanN
   score -= missingRequired.length * 25;
   score -= Math.min(40, missingNodes.length * 3);
   score -= Math.min(25, dirtyNodes.length * 4);
-  score -= Math.min(10, orphanNodes.length * 1);
+  score -= Math.min(10, orphanNodes.length);
   return Math.max(0, Math.min(100, score));
 }
 
@@ -22,18 +22,12 @@ function statusForScore(score, hasFailure) {
 
 function shouldFail(failOn, result) {
   switch (failOn) {
-    case 'never':
-      return false;
-    case 'missing-required':
-      return result.missingRequired.length > 0;
-    case 'missing-nodes':
-      return result.missingRequired.length > 0 || result.missingNodes.length > 0;
-    case 'dirty-nodes':
-      return result.missingRequired.length > 0 || result.missingNodes.length > 0 || result.dirtyNodes.length > 0;
-    case 'warnings':
-      return result.healthScore < 100 || result.orphanNodes.length > 0;
-    default:
-      return result.missingRequired.length > 0;
+    case 'never': return false;
+    case 'missing-required': return result.missingRequired.length > 0;
+    case 'missing-nodes': return result.missingRequired.length > 0 || result.missingNodes.length > 0;
+    case 'dirty-nodes': return result.missingRequired.length > 0 || result.missingNodes.length > 0 || result.dirtyNodes.length > 0;
+    case 'warnings': return result.healthScore < 100 || result.orphanNodes.length > 0;
+    default: return result.missingRequired.length > 0;
   }
 }
 
@@ -75,10 +69,19 @@ function checkRepository(config, scan) {
     healthScore,
     status: 'healthy',
     shouldFail: false,
-    pro: {
-      licenseProvided: Boolean(config.proLicenseKey),
-      licenseValidated: false,
-      note: 'Pro license validation is reserved for a future commercial release and is not active in v0.1.0.'
+    verification: {
+      scope: 'basic-local-ci',
+      checksExecuted: [
+        'required-artifacts',
+        'node-coverage',
+        'orphan-nodes',
+        ...(config.changedOnly ? ['changed-file-node-drift'] : [])
+      ],
+      semanticArchitecture: {
+        status: 'NOT_VERIFIED',
+        executed: false,
+        reason: 'Semantic architecture verification is not performed by Living Architecture Nodes Action v0.1.1.'
+      }
     }
   };
 
@@ -87,8 +90,4 @@ function checkRepository(config, scan) {
   return result;
 }
 
-module.exports = {
-  checkRepository,
-  computeHealthScore,
-  shouldFail
-};
+module.exports = { checkRepository, computeHealthScore, shouldFail };
