@@ -5,8 +5,8 @@
   "repository_visibility_required": "public",
   "marketplace_type": "github-action",
   "marketplace_name": "Living Architecture Nodes Check",
-  "version": "0.1.1",
-  "release_tag": "v0.1.1",
+  "version": "0.1.2",
+  "release_tag": "v0.1.2",
   "floating_tags_planned": [
     "v0.1",
     "v0"
@@ -21,7 +21,7 @@
   "marketplace_publish_blockers": [
     "GitHub Marketplace release UI must validate the action name and metadata with Everything looks good",
     "GitHub Marketplace Developer Agreement must be accepted by the repository owner",
-    "Publish this Action to the GitHub Marketplace must be selected on the v0.1.1 release",
+    "Publish this Action to the GitHub Marketplace must be selected on the v0.1.2 release",
     "Primary and optional secondary Marketplace categories must be selected",
     "Final release must use two-factor authenticated GitHub publication"
   ],

@@ -1,4 +1,4 @@
-# GitHub Marketplace Release — v0.1.1
+# GitHub Marketplace Release — v0.1.2
 
 This repository is prepared for a Free GitHub Action Marketplace release.
 
@@ -12,7 +12,7 @@ Before publication:
 4. No raw license-key input exists.
 5. No runtime network client is present.
 6. Architecture-memory companion files are complete.
-7. Release tag is `v0.1.1`.
+7. Release tag is `v0.1.2`.
 8. GitHub's release UI reports **Everything looks good!** for the Action metadata.
 9. The repository owner accepts the GitHub Marketplace Developer Agreement if prompted.
 10. Select **Publish this Action to the GitHub Marketplace**.
@@ -24,7 +24,7 @@ Before publication:
 Exact release:
 
 ```text
-v0.1.1
+v0.1.2
 ```
 
 After the Marketplace release is validated, compatibility aliases may point to the same verified commit:

@@ -10,7 +10,7 @@ It is the CI/adoption surface for LAN. It must remain distinct from the private 
 
 action.yml → src/index.js → src/config.js / src/workspace-authority.js → src/scanner.js → src/checker.js / src/git.js → src/summary.js → src/exporter.js / src/redactor.js → local .lan-action reports.
 
-## v0.1.1 contracts
+## v0.1.2 contracts
 
 The Action performs basic local CI checks:
 
@@ -35,7 +35,7 @@ The Action has no runtime network client, no telemetry, no remote source upload,
 
 ## Marketplace release boundary
 
-v0.1.1 is intended as a Free GitHub Marketplace Action release.
+v0.1.2 is intended as a Free GitHub Marketplace Action release.
 
 Repository/API release creation is not sufficient proof of Marketplace publication. GitHub's Action release UI must validate metadata and have **Publish this Action to the GitHub Marketplace** selected.
 

@@ -10,7 +10,7 @@ Publishes the heuristic maintenance outputs plus explicit verification_scope and
 
 ## Current state
 
-v0.1.1 Marketplace candidate.
+v0.1.2 Marketplace candidate.
 
 ## Regression triggers
 

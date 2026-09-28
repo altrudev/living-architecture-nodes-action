@@ -14,7 +14,7 @@ Public GitHub Action metadata and execution contract for the free Living Archite
 
 ## Current state
 
-v0.1.1 Marketplace candidate.
+v0.1.2 Marketplace candidate.
 
 Recent changes: removed the reserved license input, added verification scope outputs, and clarified repository-bound workspace/export paths.
 

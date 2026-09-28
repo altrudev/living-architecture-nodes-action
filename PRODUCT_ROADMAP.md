@@ -1,6 +1,6 @@
 # Product Roadmap — Living Architecture Nodes Action
 
-## v0.1.1 — Free Marketplace foundation
+## v0.1.2 — Free Marketplace foundation
 
 - basic architecture-memory CI checks;
 - missing/orphan/changed-node risk;

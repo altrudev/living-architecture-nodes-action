@@ -12,7 +12,7 @@ Renders console and Markdown summaries for basic CI findings.
 
 ## Current state
 
-v0.1.1 Marketplace candidate.
+v0.1.2 Marketplace candidate.
 
 ## Regression triggers
 

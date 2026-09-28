@@ -1,6 +1,6 @@
 # CHANGELOG.node.md — Living Architecture Nodes Action
 
-## 2026-09-28 — v0.1.1 Marketplace hardening
+## 2026-09-28 — v0.1.2 Marketplace hardening
 
 ### Changed
 
@@ -22,6 +22,11 @@
 ### Release state
 
 Marketplace publication is not considered complete until GitHub's release UI validates the Action and the Marketplace publication checkbox is selected.
+
+## 2026-06-03 — v0.1.1 Node 24 maintenance
+
+- Updated the GitHub Action runtime from Node.js 20 to Node.js 24.
+- Preserved the existing basic checker behavior.
 
 ## 2026-06-02 — v0.1.0
 

@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.1
+## 0.1.2
 
 Marketplace hardening release.
 
@@ -18,7 +18,7 @@ Marketplace hardening release.
 - removed the unused `pro_license_key` input;
 - clarified that the 0–100 maintenance score is heuristic and not a semantic architecture verdict;
 - confined configured workspaces and diagnostic exports to `GITHUB_WORKSPACE`;
-- updated diagnostic schema to `living-architecture-nodes-action-diagnostic@0.1.1`;
+- updated diagnostic schema to `living-architecture-nodes-action-diagnostic@0.1.2`;
 - positioned the Action as the permanently useful Free CI surface for LAN.
 
 ### Privacy / security
@@ -28,6 +28,11 @@ Marketplace hardening release.
 - no paid entitlement call;
 - no raw license secret;
 - no source-code upload.
+
+## 0.1.1 — Node 24 maintenance
+
+- Updated the Action runtime from Node.js 20 to Node.js 24.
+- Preserved the v0.1.0 basic feature set.
 
 ## 0.1.0
 

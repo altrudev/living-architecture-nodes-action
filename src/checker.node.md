@@ -7,13 +7,13 @@ Evaluates basic repository architecture-memory checks and the heuristic maintena
 ## Contracts
 
 - maintenance score is not a semantic architecture verdict;
-- semantic architecture is NOT_VERIFIED in v0.1.1;
+- semantic architecture is NOT_VERIFIED in v0.1.2;
 - NOT_VERIFIED means the check did not execute, not that it failed;
 - no license or tier decision is made here.
 
 ## Current state
 
-v0.1.1 Marketplace candidate.
+v0.1.2 Marketplace candidate.
 
 ## Regression triggers
 

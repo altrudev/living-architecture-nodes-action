@@ -15,7 +15,7 @@ Living Architecture Nodes Action checks the repository-local architecture-memory
 
 The maintenance score is a **heuristic CI signal, not a semantic architecture verdict**.
 
-The free Action does not claim to understand whether the architecture itself is correct. In v0.1.1:
+The free Action does not claim to understand whether the architecture itself is correct. In v0.1.2:
 
 ```text
 Verification scope: basic-local-ci
@@ -64,7 +64,7 @@ jobs:
           fetch-depth: 0
 
       - name: Check architecture memory
-        uses: altrudev/living-architecture-nodes-action@v0.1.1
+        uses: altrudev/living-architecture-nodes-action@v0.1.2
         with:
           fail_on: missing-required
           export_path: .lan-action
@@ -98,8 +98,8 @@ For highest supply-chain assurance, pin third-party Actions to full commit SHAs 
 |---|---|
 | `health_score` | Heuristic architecture-memory maintenance score, 0–100. |
 | `status` | Basic CI policy status: `healthy`, `warning`, or `failed`. |
-| `verification_scope` | Executed verification scope; v0.1.1 is `basic-local-ci`. |
-| `semantic_architecture_status` | `NOT_VERIFIED` in v0.1.1. |
+| `verification_scope` | Executed verification scope; v0.1.2 is `basic-local-ci`. |
+| `semantic_architecture_status` | `NOT_VERIFIED` in v0.1.2. |
 | `missing_required_count` | Missing required root artifacts. |
 | `missing_node_count` | Source files missing companion nodes. |
 | `dirty_node_count` | Changed source files without matching node updates. |

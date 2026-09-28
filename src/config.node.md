@@ -13,7 +13,7 @@ Normalizes Action inputs and constructs the authorized runtime configuration.
 
 ## Current state
 
-v0.1.1 Marketplace candidate with canonical workspace/export authority resolution.
+v0.1.2 Marketplace candidate with canonical workspace/export authority resolution.
 
 ## Regression triggers
 

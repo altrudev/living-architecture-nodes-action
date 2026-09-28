@@ -80,7 +80,7 @@ function checkRepository(config, scan) {
       semanticArchitecture: {
         status: 'NOT_VERIFIED',
         executed: false,
-        reason: 'Semantic architecture verification is not performed by Living Architecture Nodes Action v0.1.1.'
+        reason: 'Semantic architecture verification is not performed by Living Architecture Nodes Action v0.1.2.'
       }
     }
   };

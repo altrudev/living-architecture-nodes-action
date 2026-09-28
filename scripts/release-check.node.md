@@ -17,7 +17,7 @@ Deterministic Frequency gate for the GitHub Marketplace Action release.
 
 ## Current state
 
-v0.1.1 Marketplace candidate.
+v0.1.2 Marketplace candidate.
 
 ## Regression trigger
 

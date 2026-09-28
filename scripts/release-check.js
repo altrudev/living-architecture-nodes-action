@@ -38,7 +38,7 @@ if (!action.includes('verification_scope:')) failures.push('verification_scope o
 if (!action.includes('semantic_architecture_status:')) failures.push('semantic_architecture_status output is missing');
 
 if (pkg.version !== manifest.version) failures.push('package version and Marketplace manifest version differ');
-if (manifest.version !== '0.1.1' || manifest.release_tag !== 'v0.1.1') failures.push('v0.1.1 release identity drifted');
+if (manifest.version !== '0.1.2' || manifest.release_tag !== 'v0.1.2') failures.push('v0.1.2 release identity drifted');
 if (manifest.pricing !== 'free') failures.push('GitHub Action Marketplace release must remain free');
 if (manifest.paid_entitlements_enabled !== false) failures.push('paid entitlements must not be enabled in the Action');
 if (manifest.runtime_network_access !== false) failures.push('runtime network access must remain false');
@@ -51,7 +51,7 @@ for (const phrase of [
   'Free GitHub Action',
   'NOT_VERIFIED',
   'no telemetry',
-  'v0.1.1',
+  'v0.1.2',
   'not a semantic architecture verdict'
 ]) {
   if (!readme.includes(phrase)) failures.push('README missing required Marketplace statement: ' + phrase);
