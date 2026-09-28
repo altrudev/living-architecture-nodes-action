@@ -2,7 +2,11 @@
 
 ## Current release state
 
-v0.1.2 Marketplace candidate.
+**v0.1.2 LIVE and VERIFIED in GitHub Marketplace.**
+
+Exact release commit: `c7d44c31bb7631d8aec357b94803d89246555e7e`.
+
+Marketplace categories: `code-quality`, `utilities`.
 
 ## Cascade map
 
@@ -15,38 +19,22 @@ v0.1.2 Marketplace candidate.
 | src/git.js | checker | Changed-file evidence |
 | src/checker.js | index/exporter/summary | Status and verification semantics |
 | src/summary.js | exporter/step summary | User-facing claims |
-| scripts/release-check.js | Marketplace promotion | Release gate |
+| scripts/release-check.js | Marketplace promotion / alias movement | Release gate |
+| release/marketplace-manifest.json | v0.1/v0 aliases | Verified release identity |
 
 ## 2026-09-28 Frequency Marketplace sweep
 
-- Removed unused raw pro_license_key.
-- Kept the Action genuinely useful and Free.
-- Added explicit basic-local-ci verification scope.
-- Added semantic architecture NOT_VERIFIED semantics.
-- Added repository/export authority confinement.
-- Added traversal, absolute-path, symlink, checker, and redaction regression tests.
-- Added Marketplace release/privacy/security/support documentation.
-- Added a deterministic release preflight.
-
-## Troubleshooting
-
-### Changed-file drift missing
-
-1. Use actions/checkout with fetch-depth: 0.
-2. Verify pull-request/base history exists.
-3. Inspect src/git.js.
-4. Unavailable change history reduces evidence; it does not create semantic verification.
-
-### Export rejected
-
-1. Confirm export_path is repository-relative.
-2. Confirm no parent traversal.
-3. Confirm the path does not traverse a symlink outside the workspace.
+- Free product boundary verified.
+- `basic-local-ci` verification scope verified.
+- Semantic architecture remains `NOT_VERIFIED`.
+- Filesystem authority and adversarial path tests passed.
+- Marketplace v0.1.2 listing verified live.
+- Compatibility aliases `v0.1` and `v0` authorized only for the verified release commit.
 
 ## Regression triggers
 
-- Action gains repository write/API permission it does not need.
-- Any raw license secret reappears.
-- Runtime network access appears.
+- `v0.1.2` exact tag is moved.
+- A moving alias points anywhere except the currently verified compatible release.
+- Runtime network access or raw license secrets appear.
 - Health score is described as semantic architecture proof.
-- Marketplace release is claimed without GitHub Marketplace publication evidence.
+- Marketplace publication is claimed without live evidence.
