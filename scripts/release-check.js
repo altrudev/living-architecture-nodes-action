@@ -46,6 +46,11 @@ if (manifest.telemetry !== false) failures.push('telemetry must remain false');
 if (manifest.marketplace_publish_allowed !== false) failures.push('Marketplace publish flag must stay blocked until GitHub UI validation is completed');
 if (!Array.isArray(manifest.marketplace_publish_blockers) || manifest.marketplace_publish_blockers.length === 0) failures.push('Marketplace blockers must be explicit');
 
+for (const rel of ['src/workspace-authority.node.md','test/checker.test.node.md']) {
+  const value = text(rel);
+  if (value.includes('v0.1.1')) failures.push('stale release identity remains in current architecture memory: ' + rel);
+}
+
 const readme = text('README.md');
 for (const phrase of [
   'Free GitHub Action',
