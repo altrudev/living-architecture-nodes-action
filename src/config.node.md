@@ -1,37 +1,20 @@
 # src/config.js — Living Architecture Node
 
-## Static layer
+## Purpose
 
-### Purpose
+Normalizes Action inputs and constructs the authorized runtime configuration.
 
-Normalizes Action inputs and constructs an authorized runtime configuration.
+## Contracts
 
-### Dependencies
-
-Calls `src/workspace-authority.js`.
-
-### Contracts
-
-- `GITHUB_WORKSPACE` is the authority root;
-- optional workspace remains inside that root;
-- export path remains inside selected workspace;
+- GITHUB_WORKSPACE is the authority root;
+- optional workspace stays inside that root;
+- export path stays inside the selected workspace;
 - no paid-license input is parsed.
 
-## Dynamic layer
+## Current state
 
-### Current stability state
+v0.1.1 Marketplace candidate with canonical workspace/export authority resolution.
 
-v0.1.1 Marketplace candidate.
+## Regression triggers
 
-### Recent mutations
-
-- Added canonical workspace/export authority resolution.
-- Removed legacy Pro-license configuration.
-
-## Diagnostic layer
-
-### Regression triggers
-
-- accepting paths outside the repository root;
-- reintroducing a raw paid-license secret;
-- input defaults drifting from `action.yml`.
+Path escape, input/default drift from action.yml, or reintroduction of raw license data.
