@@ -4,65 +4,37 @@
 
 ### Purpose and responsibility boundary
 
-GitHub Action metadata and execution contract.
-
-This node must remain focused on its stated responsibility and should not absorb unrelated product, licensing, or UI concerns.
-
-### Dependencies
-
-Calls: src/index.js.
-
-Called by: GitHub Actions workflow runner.
+Public GitHub Action metadata and execution contract for the free Living Architecture Nodes CI surface.
 
 ### Contracts
 
-- Accepts only normalized inputs from its direct caller unless otherwise stated.
-- Returns deterministic data structures or performs one bounded side effect.
-- Must not call remote services or collect telemetry.
+- exactly one root Action metadata file;
+- Node 24 runtime;
+- no raw license-key or paid entitlement input;
+- basic CI outputs are distinct from semantic verification;
+- no remote service or telemetry requirement.
 
 ## Dynamic layer
 
 ### Current stability state
 
-Stable for v0.1.0.
+v0.1.1 Marketplace candidate.
 
 ### Recent mutations
 
-Initial implementation created for the GitHub Action wrapper.
-- Updated source extension defaults in action metadata to include YAML workflow/action files and exclude `.lan-action` exports.
+- Removed the reserved raw `pro_license_key` input.
+- Added `verification_scope` and `semantic_architecture_status` outputs.
+- Clarified workspace/export paths must remain inside `GITHUB_WORKSPACE`.
 
-### Known fragile points
+## Security notes
 
-- Changes to file paths, action input names, or report shapes can cascade into dependent modules.
-- Keep behavior local-first and CI-safe.
-
-### Interaction warnings
-
-Review `ARCH.md` and `NERVE.md` before changing this module because the action relies on tight alignment between metadata, scanner output, checker output, and reports.
-
-### Performance observations
-
-Acceptable for small and medium repositories. Large repositories may require path filtering in later versions.
-
-### Security notes
-
-No telemetry. No remote calls. Avoid exporting source contents or secrets.
+The Action itself does not request GitHub API authority or repository write permission.
 
 ## Diagnostic layer
 
-### Past bug patterns
-
-None yet.
-
-### Near misses
-
-None yet.
-
 ### Regression triggers
 
-- Changing public output shape without updating README and `action.yml`.
-- Changing source matching behavior without updating check/report expectations.
-
-### Suspected hidden coupling
-
-Potential coupling to GitHub Actions checkout behavior and git history depth.
+- adding a credential/license-key input;
+- changing public outputs without matching docs;
+- adding a network dependency;
+- changing the runtime or entrypoint without release review.
