@@ -1,6 +1,6 @@
 'use strict';
 
-const path = require('path');
+const { resolveWorkspace, resolveExportDir } = require('./workspace-authority');
 
 const DEFAULT_SOURCE_EXTENSIONS = [
   '.js', '.jsx', '.ts', '.tsx', '.mjs', '.cjs',
@@ -16,17 +16,14 @@ const DEFAULT_EXCLUDE_DIRS = [
 const REQUIRED_ARTIFACTS = ['ARCH.md', 'NERVE.md', 'CHANGELOG.node.md'];
 
 function readInput(name, fallback = '') {
-  const envName = `INPUT_${name.replace(/ /g, '_').toUpperCase()}`;
+  const envName = 'INPUT_' + name.replace(/ /g, '_').toUpperCase();
   const value = process.env[envName];
   return value === undefined || value === null || value === '' ? fallback : value;
 }
 
 function parseCsv(value, fallback) {
   if (!value || typeof value !== 'string') return fallback.slice();
-  const parsed = value
-    .split(',')
-    .map((item) => item.trim())
-    .filter(Boolean);
+  const parsed = value.split(',').map((item) => item.trim()).filter(Boolean);
   return parsed.length > 0 ? parsed : fallback.slice();
 }
 
@@ -36,20 +33,20 @@ function parseBoolean(value, fallback = false) {
 }
 
 function getConfig(argv = process.argv) {
-  const workspaceInput = readInput('workspace', '');
-  const workspace = path.resolve(workspaceInput || process.env.GITHUB_WORKSPACE || process.cwd());
-  const exportPathInput = readInput('export_path', '.lan-action');
+  const authorityRoot = process.env.GITHUB_WORKSPACE || process.cwd();
+  const workspace = resolveWorkspace(authorityRoot, readInput('workspace', ''));
+  const exportDir = resolveExportDir(workspace, readInput('export_path', '.lan-action'));
 
   return {
+    authorityRoot,
     workspace,
     mode: readInput('mode', 'check').toLowerCase(),
     failOn: readInput('fail_on', 'missing-required').toLowerCase(),
     changedOnly: parseBoolean(readInput('changed_only', 'true'), true),
     sourceExtensions: parseCsv(readInput('source_extensions', DEFAULT_SOURCE_EXTENSIONS.join(',')), DEFAULT_SOURCE_EXTENSIONS),
     excludeDirs: parseCsv(readInput('exclude_dirs', DEFAULT_EXCLUDE_DIRS.join(',')), DEFAULT_EXCLUDE_DIRS),
-    exportDir: path.resolve(workspace, exportPathInput),
+    exportDir,
     writeSummary: parseBoolean(readInput('write_summary', 'true'), true),
-    proLicenseKey: readInput('pro_license_key', ''),
     localSelfCheck: argv.includes('--local-self-check')
   };
 }

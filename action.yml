@@ -1,5 +1,5 @@
 name: "Living Architecture Nodes Check"
-description: "Check required Living Architecture Nodes artifacts, missing node files, dirty node risk, and export AI/dev diagnostic reports."
+description: "Check repository architecture memory, missing/stale nodes, and export local AI/dev diagnostic reports."
 author: "Valentyn Rukhaylo / Altru.dev"
 
 branding:
@@ -8,11 +8,11 @@ branding:
 
 inputs:
   workspace:
-    description: "Repository workspace path. Defaults to GITHUB_WORKSPACE."
+    description: "Repository-relative workspace path. Defaults to GITHUB_WORKSPACE. Must remain inside GITHUB_WORKSPACE."
     required: false
     default: ""
   mode:
-    description: "check or export. check runs validation and writes reports. export always writes reports."
+    description: "check or export. Both run validation and write local diagnostic reports."
     required: false
     default: "check"
   fail_on:
@@ -20,7 +20,7 @@ inputs:
     required: false
     default: "missing-required"
   changed_only:
-    description: "When true, dirty node detection focuses on changed files in the pull request or commit range."
+    description: "When true, dirty-node detection focuses on changed files in the pull request or commit range."
     required: false
     default: "true"
   source_extensions:
@@ -32,23 +32,23 @@ inputs:
     required: false
     default: ".git,node_modules,dist,build,out,coverage,.next,.nuxt,.turbo,.cache,vendor,.venv,venv,__pycache__,.lan-action"
   export_path:
-    description: "Output directory for diagnostic exports."
+    description: "Workspace-relative output directory for local diagnostic exports."
     required: false
     default: ".lan-action"
   write_summary:
-    description: "Write GitHub step summary when possible."
+    description: "Write a GitHub step summary when possible."
     required: false
     default: "true"
-  pro_license_key:
-    description: "Reserved for future Pro license unlock. Not validated in v0.1.0."
-    required: false
-    default: ""
 
 outputs:
   health_score:
-    description: "Computed repository architecture-memory health score."
+    description: "Heuristic architecture-memory maintenance score from 0 to 100; not a semantic architecture verdict."
   status:
-    description: "healthy, warning, or failed."
+    description: "healthy, warning, or failed for the configured basic CI policy."
+  verification_scope:
+    description: "Verification scope executed by this Action release."
+  semantic_architecture_status:
+    description: "Semantic architecture verification status. v0.1.2 reports NOT_VERIFIED."
   missing_required_count:
     description: "Number of missing required root artifacts."
   missing_node_count:
@@ -56,9 +56,9 @@ outputs:
   dirty_node_count:
     description: "Number of changed source files whose matching .node.md file was not changed."
   diagnostic_json:
-    description: "Path to diagnostic JSON export."
+    description: "Path to local diagnostic JSON export."
   diagnostic_markdown:
-    description: "Path to diagnostic Markdown export."
+    description: "Path to local diagnostic Markdown export."
 
 runs:
   using: "node24"
