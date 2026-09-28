@@ -1,13 +1,16 @@
 {
   "name": "living-architecture-nodes-action",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
-  "description": "Official GitHub Action wrapper for Living Architecture Nodes repository checks and diagnostic handoff exports.",
+  "description": "Free GitHub Action for Living Architecture Nodes repository checks and local diagnostic handoff exports.",
   "type": "commonjs",
   "main": "src/index.js",
   "scripts": {
     "check": "node src/index.js",
-    "self-check": "node src/index.js --local-self-check"
+    "self-check": "node src/index.js --local-self-check",
+    "test": "node --test test/*.test.js",
+    "release:check": "node scripts/release-check.js",
+    "verify": "npm run self-check && npm test && npm run release:check"
   },
   "engines": {
     "node": ">=20"
@@ -17,6 +20,7 @@
     "software-architecture",
     "github-action",
     "ai-assisted-development",
+    "architecture-memory",
     "diagnostic-export"
   ],
   "author": "Valentyn Rukhaylo / Altru.dev",
