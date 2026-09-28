@@ -1,41 +1,27 @@
 # GitHub Marketplace Release — v0.1.2
 
-This repository is prepared for a Free GitHub Action Marketplace release.
+Living Architecture Nodes Check v0.1.2 is published and verified live in GitHub Marketplace.
 
-## Frequency release gates
+## Verified release identity
 
-Before publication:
+- Exact tag: `v0.1.2`
+- Release commit: `c7d44c31bb7631d8aec357b94803d89246555e7e`
+- Marketplace name: **Living Architecture Nodes Check**
+- Pricing: **Free**
+- Categories: **code-quality**, **utilities**
+- Public listing: https://github.com/marketplace/actions/living-architecture-nodes-check
 
-1. `npm run verify` passes.
-2. Repository is public.
-3. Exactly one root `action.yml` / `action.yaml` exists.
-4. No raw license-key input exists.
-5. No runtime network client is present.
-6. Architecture-memory companion files are complete.
-7. Release tag is `v0.1.2`.
-8. GitHub's release UI reports **Everything looks good!** for the Action metadata.
-9. The repository owner accepts the GitHub Marketplace Developer Agreement if prompted.
-10. Select **Publish this Action to the GitHub Marketplace**.
-11. Select a primary category; suggested: **Code quality**. Optional secondary: **Utilities**.
-12. Publish with two-factor authentication.
+The exact release tag is immutable and must not be moved.
 
-## Tag strategy
+## Compatibility aliases
 
-Exact release:
+After live Marketplace verification, the moving compatibility aliases are authorized to point to the exact verified release commit:
 
 ```text
-v0.1.2
+v0.1 → c7d44c31bb7631d8aec357b94803d89246555e7e
+v0   → c7d44c31bb7631d8aec357b94803d89246555e7e
 ```
 
-After the Marketplace release is validated, compatibility aliases may point to the same verified commit:
+Future compatible v0 releases may advance these moving aliases only after the replacement release completes the same Frequency release and Marketplace verification gates.
 
-```text
-v0.1
-v0
-```
-
-Users who require immutable behavior should pin the exact tag or full commit SHA.
-
-## Important
-
-Creating a GitHub Release by API/CLI is not treated as proof that the Action was listed in Marketplace. Marketplace publication is only complete after the GitHub release UI has the Marketplace option selected and the public listing is independently checked.
+Users who require immutable behavior should pin `v0.1.2` or the full commit SHA.
