@@ -20,7 +20,7 @@ A configured workspace must remain inside the runner-provided repository root, a
 
 ### Current stability state
 
-Candidate for v0.1.1 GitHub Marketplace release.
+v0.1.2 Marketplace release baseline.
 
 ### Recent mutations
 
