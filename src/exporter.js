@@ -10,7 +10,7 @@ async function exportDiagnostics(config, scan, check) {
   await ensureDir(config.exportDir);
 
   const payload = redactObject({
-    schema: 'living-architecture-nodes-action-diagnostic@0.1.0',
+    schema: 'living-architecture-nodes-action-diagnostic@0.1.1',
     generatedAt: new Date().toISOString(),
     repository: {
       workspace: config.workspace,
@@ -39,6 +39,4 @@ async function exportDiagnostics(config, scan, check) {
   return { jsonPath, markdownPath };
 }
 
-module.exports = {
-  exportDiagnostics
-};
+module.exports = { exportDiagnostics };
