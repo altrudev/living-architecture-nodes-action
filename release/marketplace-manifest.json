@@ -31,5 +31,15 @@
   "release_notes_source": "CHANGELOG.md",
   "privacy_source": "PRIVACY.md",
   "support_source": "SUPPORT.md",
-  "security_source": "SECURITY.md"
+  "security_source": "SECURITY.md",
+  "compatibility_aliases_verified": true,
+  "compatibility_alias_refs": {
+    "v0.1": "c7d44c31bb7631d8aec357b94803d89246555e7e",
+    "v0": "c7d44c31bb7631d8aec357b94803d89246555e7e"
+  },
+  "alias_verification": {
+    "method": "git-ref-resolution-and-clone-smoke-test",
+    "tests_passed_per_alias": 7,
+    "marketplace_release_check": "VERIFIED"
+  }
 }
