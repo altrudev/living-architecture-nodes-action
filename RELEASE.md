@@ -15,13 +15,13 @@ The exact release tag is immutable and must not be moved.
 
 ## Compatibility aliases
 
-After live Marketplace verification, the moving compatibility aliases are authorized to point to the exact verified release commit:
+The moving compatibility aliases have now been created and independently verified against the exact release commit:
 
 ```text
 v0.1 → c7d44c31bb7631d8aec357b94803d89246555e7e
 v0   → c7d44c31bb7631d8aec357b94803d89246555e7e
 ```
 
-Future compatible v0 releases may advance these moving aliases only after the replacement release completes the same Frequency release and Marketplace verification gates.
+Both aliases were cloned independently and passed the Action's 7/7 test suite plus Marketplace release check. Future compatible v0 releases may advance these moving aliases only after the replacement release completes the same Frequency release and Marketplace verification gates.
 
 Users who require immutable behavior should pin `v0.1.2` or the full commit SHA.
