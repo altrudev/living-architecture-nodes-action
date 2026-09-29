@@ -1,35 +1,22 @@
 # src/workspace-authority.js — Living Architecture Node
 
-## Static layer
+## Purpose
 
-### Purpose and responsibility boundary
+Defines the repository filesystem authority boundary and secure diagnostic write primitive.
 
-Defines the filesystem authority boundary for the GitHub Action.
+## Contracts
 
-A configured workspace must remain inside the runner-provided repository root, and diagnostic exports must remain inside the selected workspace.
+- configured workspace remains inside GITHUB_WORKSPACE;
+- parent traversal, absolute external targets, and symbolic-link path components are rejected;
+- diagnostic replacement uses a private same-directory temporary file followed by atomic rename;
+- a pre-existing hard link to the old destination inode is not modified by replacement;
+- POSIX file mode 0600 and newly created output-directory mode 0700 are used where supported;
+- no network access or telemetry.
 
-### Contracts
+## Current state
 
-- repository-relative sub-workspaces are allowed;
-- parent traversal outside the authorized root is denied;
-- absolute export paths are denied;
-- symbolic-link path escape is denied;
-- the module performs no network access and collects no telemetry.
+v0.1.3 security hardening candidate.
 
-## Dynamic layer
+## Regression triggers
 
-### Current stability state
-
-v0.1.2 Marketplace release baseline.
-
-### Recent mutations
-
-- Added during the Frequency Marketplace sweep to make the Action's local-first boundary enforceable rather than documentary.
-
-## Diagnostic layer
-
-### Regression triggers
-
-- Allowing export paths outside the selected repository workspace.
-- Following a symbolic link outside the authorized root.
-- Accepting an arbitrary absolute workspace outside GITHUB_WORKSPACE.
+Path escape, direct truncate-overwrite, symlink following, hard-link side effects, or weakened private output permissions.

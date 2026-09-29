@@ -1,5 +1,47 @@
 # Changelog
 
+## 0.1.3 — Candidate
+
+Licensing, client-data, and self-security hardening.
+
+### Licensing / IP
+
+- added a separate End User License Agreement required for Marketplace use;
+- clarified that Free describes price, not open-source status;
+- preserved free official Action use while reserving proprietary implementation rights;
+- restricted unauthorized repackaging, white-label distribution, competing hosted service use, and confusing branding;
+- explicitly preserved user ownership of Customer Content;
+- added contribution licensing terms;
+- added third-party notices and strengthened trademark/notice language.
+
+### Client data / privacy
+
+- replaced broad diagnostic serialization with an explicit client-data allowlist;
+- removed absolute runner/workspace paths from diagnostics;
+- removed full source-file/node-file inventories from diagnostics;
+- removed GitHub repository/ref/SHA/event identity metadata from diagnostics;
+- kept only counts and relative paths attached to findings;
+- unified JSON and GitHub/Markdown summary output on the same sanitized model;
+- expanded secret-shaped path metadata redaction;
+- escaped hostile Markdown/control characters in path values.
+
+### Security
+
+- diagnostic writes now use private same-directory temporary files followed by atomic rename;
+- added hard-link overwrite regression coverage;
+- retained traversal/absolute-path/symlink escape protections;
+- documented bounded local git subprocess use with no shell and no network command;
+- verified GitHub private vulnerability reporting is enabled;
+- runtime npm dependencies remain zero;
+- added lockfile and npm-audit release evidence.
+
+### Release governance
+
+- preserved immutable v0.1.2 and its verified Marketplace commit;
+- kept v0/v0.1 aliases pinned to the live v0.1.2 release while v0.1.3 remains a candidate;
+- separated live Marketplace state from candidate state in the release manifest;
+- expanded the Frequency release gate to cover licensing, client-data, security, and alias immutability.
+
 ## 0.1.2
 
 Marketplace hardening release.

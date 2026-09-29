@@ -1,40 +1,74 @@
 # NERVE.md — Living Architecture Nodes Action Hub
 
-## Current release state
+## Current state
 
-**v0.1.2 LIVE and VERIFIED in GitHub Marketplace.**
+**v0.1.2 remains LIVE and VERIFIED in GitHub Marketplace.**
 
-Exact release commit: `c7d44c31bb7631d8aec357b94803d89246555e7e`.
+Verified immutable release commit:
 
-Marketplace categories: `code-quality`, `utilities`.
+`c7d44c31bb7631d8aec357b94803d89246555e7e`
+
+**v0.1.3 is a candidate only** until the full promotion sequence completes.
 
 ## Cascade map
 
 | Node | At-risk dependents | Reason |
 |---|---|---|
-| action.yml | README, Marketplace listing, runtime outputs | Public contract |
-| src/config.js | scanner/exporter/index | Input and authority normalization |
-| src/workspace-authority.js | config/export path | Filesystem confinement |
-| src/scanner.js | checker/exporter/summary | Scan shape |
-| src/git.js | checker | Changed-file evidence |
-| src/checker.js | index/exporter/summary | Status and verification semantics |
-| src/summary.js | exporter/step summary | User-facing claims |
-| scripts/release-check.js | Marketplace promotion / alias movement | Release gate |
-| release/marketplace-manifest.json | v0.1/v0 aliases | Verified release identity |
+| `action.yml` | README, Marketplace listing, runtime outputs | Public contract |
+| `EULA.md` | LICENSE, README, NOTICE, Marketplace legal boundary | End-user rights |
+| `TRADEMARK.md` | branding/listing | Source identity |
+| `CONTRIBUTING.md` | accepted PRs | Contribution rights |
+| `src/config.js` | scanner/exporter/index | Input normalization |
+| `src/workspace-authority.js` | export path/write safety | Filesystem confinement |
+| `src/scanner.js` | checker | Scan shape |
+| `src/git.js` | checker | Changed-file evidence |
+| `src/checker.js` | client-data/index | Status semantics |
+| `src/client-data.js` | exporter/step summary | Client-data allowlist |
+| `src/redactor.js` | client-data | Secret-shaped metadata defense |
+| `src/summary.js` | GitHub summary/export Markdown | User-visible findings |
+| `src/exporter.js` | local diagnostics | Client-data persistence |
+| `scripts/release-check.js` | merge/tag/Marketplace/alias movement | Promotion gate |
+| `release/marketplace-manifest.json` | release state/aliases/license/security | Machine source of truth |
 
-## 2026-09-28 Frequency Marketplace sweep
+## v0.1.3 Frequency hardening
 
-- Free product boundary verified.
-- `basic-local-ci` verification scope verified.
-- Semantic architecture remains `NOT_VERIFIED`.
-- Filesystem authority and adversarial path tests passed.
-- Marketplace v0.1.2 listing verified live.
-- Compatibility aliases `v0.1` and `v0` authorized only for the verified release commit.
+- Added a separate Marketplace EULA and explicit proprietary source-available license model.
+- Preserved free official Action use while restricting repackaging, white-label distribution, competing hosted use, and confusing branding.
+- Added contribution licensing terms to avoid ambiguous inbound IP.
+- Explicitly preserved Customer Content ownership.
+- Added third-party notice discipline.
+- Replaced arbitrary diagnostic serialization with an explicit client-data allowlist.
+- Removed absolute workspace path, full inventory, repository identity metadata, and arbitrary checker fields from exports.
+- Unified JSON and GitHub/Markdown summaries on the same sanitized model.
+- Expanded secret-shaped metadata redaction and Markdown escaping.
+- Added private atomic diagnostic replacement and hard-link regression coverage.
+- Verified GitHub private vulnerability reporting is enabled.
+- Runtime npm dependencies remain zero.
+- Local git use is documented as bounded `execFileSync`, no shell, no network command.
+
+## Promotion order
+
+1. Update code/docs/license under a candidate branch.
+2. Run architecture-memory self-check.
+3. Run product/security/privacy/IP tests.
+4. Run release gate.
+5. Merge only the verified candidate.
+6. Repeat the full sweep from the exact merged `main` commit.
+7. Create immutable `v0.1.3`.
+8. Publish that exact release through GitHub Marketplace.
+9. Verify the public listing says `v0.1.3` Latest.
+10. Move `v0.1` and `v0` only after live verification.
+11. Clone each alias and rerun verification.
 
 ## Regression triggers
 
-- `v0.1.2` exact tag is moved.
-- A moving alias points anywhere except the currently verified compatible release.
-- Runtime network access or raw license secrets appear.
-- Health score is described as semantic architecture proof.
+- exact release tag moves;
+- aliases move before replacement release verification;
+- EULA/licensing documents diverge from Marketplace/readme claims;
+- Customer Content ownership becomes ambiguous;
+- runtime dependency/network/telemetry appears;
+- raw checker/scanner state reaches client-visible output;
+- source contents, absolute paths, full inventories, or repository identity appear in diagnostics;
+- summary Markdown renders unescaped repository-controlled path content;
+- unsafe direct diagnostic overwrite returns;
 - Marketplace publication is claimed without live evidence.

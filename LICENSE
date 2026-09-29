@@ -1,41 +1,16 @@
-Living Architecture Nodes Action Use License v0.1
-Copyright (c) 2026 Valentyn Rukhaylo / Altru.dev. All rights reserved.
+Living Architecture Nodes Action — Proprietary Source-Available License Notice
 
-This repository contains the official Living Architecture Nodes GitHub Action implementation.
+Copyright © 2026 Valentyn Rukhaylo / Altru.dev. All rights reserved.
 
-1. FREE OFFICIAL ACTION USE
+Use of this Product is governed by the End User License Agreement in EULA.md.
 
-You may use the official Action, including for personal, educational, professional, open-source, and internal commercial repository workflows, by referencing the official repository and an official release tag or commit.
+This is source-available proprietary software, not an OSI-approved open-source license. No rights are granted except those expressly stated in EULA.md or separately granted in writing by Valentyn Rukhaylo / Altru.dev.
 
-No fee, account, or license key is required for the capabilities provided by this Action release.
+The GitHub Marketplace and platform rights granted separately to GitHub are not restricted by this notice.
 
-2. SOURCE VISIBILITY
-
-You may view and inspect the source for security review, compatibility review, evaluation, learning, and contribution discussion.
-
-This source-visible license is not an open-source license.
-
-3. RESTRICTIONS
-
-Without prior written permission from Valentyn Rukhaylo / Altru.dev, you may not:
-
-- sell, sublicense, repackage, rebrand, or redistribute modified versions of the official Action;
-- use this implementation or substantial portions of it to operate a competing commercial product or hosted service;
-- misrepresent an unofficial implementation as the official Living Architecture Nodes Action;
-- remove or alter notices in a redistributed copy where redistribution has been separately authorized.
-
-4. USER REPOSITORY CONTENT
-
-This license does not claim ownership of source code, architecture-memory files, diagnostics, or other repository content merely because the Action processes them.
-
-5. PUBLIC SPECIFICATION
-
-The Living Architecture Nodes protocol/specification may be distributed separately under different terms. Those terms do not automatically apply to this official Action implementation.
-
-6. TRADEMARK
-
-Living Architecture Nodes™ and related source-identifying branding are not licensed except for truthful descriptive references to the official product or compatibility.
-
-7. NO WARRANTY
-
-THE ACTION IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE AUTHORS AND COPYRIGHT HOLDERS ARE NOT LIABLE FOR CLAIMS, DAMAGES, OR OTHER LIABILITY ARISING FROM USE OF THE ACTION.
+See:
+- EULA.md
+- TRADEMARK.md
+- THIRD_PARTY_NOTICES.md
+- PRIVACY.md
+- SECURITY.md

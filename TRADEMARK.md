@@ -1,9 +1,18 @@
 # Trademark Notice
 
-Living Architecture Nodes™ is claimed project terminology of Valentyn Rukhaylo / Altru.dev.
+**Living Architecture Nodes™** and related source-identifying branding are claimed marks of Valentyn Rukhaylo / Altru.dev.
 
-This repository uses `NERVE.md` as a project filename and uses "Node Evidence & Regression Visibility Engine" descriptively inside the Living Architecture Nodes specification and tooling. These terms are not presented here as standalone trademark claims.
+The Product license does not grant a trademark license except for truthful nominative references necessary to identify the official Product or compatibility with it.
 
-The action-use license does not grant permission to use Living Architecture Nodes™ as a product name, service name, certification mark, endorsement mark, or source-identifying brand in a way that implies affiliation with, sponsorship by, or endorsement from Valentyn Rukhaylo / Altru.dev.
+Without prior written permission, you may not use Living Architecture Nodes™, Altru.dev, the Product icon, or confusingly similar branding:
 
-Accurate descriptive references are allowed when they are truthful and do not imply official status or endorsement.
+- as the name or primary branding of another product or service;
+- to imply certification, sponsorship, endorsement, partnership, or official status;
+- on a repackaged, modified, or competing Marketplace Action;
+- in a domain, organization, package, extension, or Marketplace listing in a manner likely to cause confusion about source or affiliation.
+
+GitHub's display and Marketplace use of Provider brand features is separately governed by Provider's agreements with GitHub.
+
+Accurate references such as "compatible with Living Architecture Nodes" are allowed when truthful, subordinate to the referring product's own branding, and not misleading.
+
+`NERVE.md` and "Node Evidence & Regression Visibility Engine" are used descriptively in the project and are not asserted here as standalone trademarks.

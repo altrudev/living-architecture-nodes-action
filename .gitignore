@@ -1,0 +1,4 @@
+node_modules/
+.lan-action/
+*.tgz
+*.zip

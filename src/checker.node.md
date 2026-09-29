@@ -6,15 +6,15 @@ Evaluates basic repository architecture-memory checks and the heuristic maintena
 
 ## Contracts
 
+- no absolute workspace path is stored in the check result;
 - maintenance score is not a semantic architecture verdict;
-- semantic architecture is NOT_VERIFIED in v0.1.2;
-- NOT_VERIFIED means the check did not execute, not that it failed;
-- no license or tier decision is made here.
+- semantic architecture remains NOT_VERIFIED in the Free Action;
+- no license/tier decision occurs in the checker.
 
 ## Current state
 
-v0.1.2 Marketplace candidate.
+v0.1.3 candidate.
 
 ## Regression triggers
 
-Score presented as semantic proof, semantic status changes without a verifier, or paid entitlement logic enters the free checker.
+Workspace identity enters the result, score is presented as semantic proof, semantic status changes without a verifier, or paid entitlement logic enters the Free checker.

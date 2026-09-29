@@ -57,7 +57,6 @@ function checkRepository(config, scan) {
 
   const result = {
     timestamp: new Date().toISOString(),
-    workspace: config.workspace,
     mode: config.mode,
     failOn: config.failOn,
     sourceFileCount: scan.sourceFiles.length,
@@ -80,7 +79,7 @@ function checkRepository(config, scan) {
       semanticArchitecture: {
         status: 'NOT_VERIFIED',
         executed: false,
-        reason: 'Semantic architecture verification is not performed by Living Architecture Nodes Action v0.1.2.'
+        reason: 'Semantic architecture verification is not performed by the current Free Living Architecture Nodes Action.'
       }
     }
   };

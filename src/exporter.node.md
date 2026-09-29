@@ -2,19 +2,22 @@
 
 ## Purpose
 
-Writes local JSON and Markdown diagnostic reports.
+Writes client-safe local JSON and Markdown diagnostic reports.
 
 ## Contracts
 
-- output stays inside the authorized workspace export directory;
-- schema is living-architecture-nodes-action-diagnostic@0.1.2;
-- diagnostic payload passes through defensive redaction;
-- no repository content is transmitted to a remote service.
+- output stays inside the authorized workspace;
+- schema is living-architecture-nodes-action-diagnostic@0.1.3;
+- exporter uses the explicit client-data allowlist;
+- JSON and Markdown use the same sanitized check model;
+- absolute workspace paths, repository identity metadata, full inventories, arbitrary future fields, and source contents are not exported;
+- diagnostic files use private atomic replacement where supported;
+- no remote service is called.
 
 ## Current state
 
-v0.1.2 Marketplace candidate.
+v0.1.3 client-data hardening candidate.
 
 ## Regression triggers
 
-Schema/version drift, export outside the authorized workspace, or remote transmission is introduced.
+Arbitrary scanner/checker serialization, unsafe direct overwrite, full inventory/path identity leakage, schema drift, or remote transmission.
