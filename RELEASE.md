@@ -2,41 +2,37 @@
 
 ## Current verified Marketplace release
 
-Living Architecture Nodes Check **v0.1.2** remains the immutable release currently verified live in GitHub Marketplace.
+Living Architecture Nodes Check **v0.1.3** is the current immutable release verified live in GitHub Marketplace.
 
-- exact tag: `v0.1.2`
-- release commit: `c7d44c31bb7631d8aec357b94803d89246555e7e`
-- Marketplace: **verified live**
+- exact tag: `v0.1.3`
+- release commit: `d1a4dbdefa0ce0b177e8f0835219a8625ec2db1b`
+- Marketplace: **verified live / Latest**
 - pricing: **Free**
 - categories: **code-quality**, **utilities**
 
 The exact tag must not move.
 
-The compatibility aliases remain pinned to that verified release until a replacement release completes all promotion gates:
+## Compatibility aliases
+
+The moving compatibility aliases have been advanced to the same verified release commit:
 
 ```text
-v0.1 → c7d44c31bb7631d8aec357b94803d89246555e7e
-v0   → c7d44c31bb7631d8aec357b94803d89246555e7e
+v0.1 → d1a4dbdefa0ce0b177e8f0835219a8625ec2db1b
+v0   → d1a4dbdefa0ce0b177e8f0835219a8625ec2db1b
 ```
 
-## Candidate release — v0.1.3
+Each alias was cloned independently after movement and passed:
 
-v0.1.3 is the licensing, client-data, and security hardening candidate.
+- Action self-check: 100/100;
+- product/security tests: 12/12;
+- npm audit: 0 vulnerabilities;
+- release gate: verified.
 
-It must not be described as live until all of the following are complete:
+Future alias movement is prohibited until a newer immutable release completes the same Frequency + Marketplace promotion sequence.
 
-1. the candidate is merged to `main`;
-2. full Frequency verification passes from the exact merged commit;
-3. immutable tag/release `v0.1.3` is created from that commit;
-4. GitHub's Marketplace release UI validates the Action metadata;
-5. **Publish this Action to the GitHub Marketplace** is selected;
-6. the public Marketplace page independently shows `v0.1.3` as Latest;
-7. `v0.1` and `v0` are advanced only after that live verification;
-8. each moved alias is cloned and passes the candidate release verification.
+## Licensing state
 
-## Licensing gate
-
-The candidate must include and synchronize:
+The live release includes and synchronizes:
 
 - `EULA.md`;
 - `LICENSE`;
@@ -48,8 +44,10 @@ The candidate must include and synchronize:
 - `SECURITY.md`;
 - `SUPPORT.md`.
 
-GitHub Marketplace's platform rights are preserved separately; the end-user license must not attempt to revoke rights Provider has granted GitHub under Marketplace/platform agreements.
+The Action remains a permanently useful **Free CI surface**. Commercial LAN capabilities remain separate products/capabilities with separate entitlements and terms.
 
 ## Immutable-release rule
 
-Never repurpose, rewrite, or move an exact release tag. New runtime, licensing, privacy, or security behavior requires a new immutable release.
+Never repurpose, rewrite, or move an exact release tag.
+
+New runtime, licensing, privacy, security, or Marketplace behavior requires a new immutable patch release. A future release must be verified live before `v0.1` or `v0` may advance again.

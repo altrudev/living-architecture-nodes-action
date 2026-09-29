@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.3 — Candidate
+## 0.1.3
 
 Licensing, client-data, and self-security hardening.
 
@@ -37,9 +37,10 @@ Licensing, client-data, and self-security hardening.
 
 ### Release governance
 
-- preserved immutable v0.1.2 and its verified Marketplace commit;
-- kept v0/v0.1 aliases pinned to the live v0.1.2 release while v0.1.3 remains a candidate;
-- separated live Marketplace state from candidate state in the release manifest;
+- preserved immutable exact-tag release history;
+- published and verified v0.1.3 as the GitHub Marketplace Latest release;
+- advanced v0/v0.1 aliases to the verified v0.1.3 commit only after live verification;
+- independently clone-tested both moving aliases after promotion;
 - expanded the Frequency release gate to cover licensing, client-data, security, and alias immutability.
 
 ## 0.1.2

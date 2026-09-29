@@ -2,26 +2,31 @@
 
 ## Purpose
 
-Deterministic Frequency gate for candidate promotion to GitHub Marketplace.
+Deterministic Frequency gate for the **live GitHub Marketplace release state** and any future replacement-release preparation.
 
 ## Checks
 
-- exact Action metadata and Node 24 entrypoint;
-- candidate package version synchronization;
-- current live release immutability and alias freeze;
+- exactly one root Action metadata file;
+- Action name, branding, Node 24 runtime, entrypoint, and outputs;
+- no raw paid-license input;
+- package/live release version synchronization;
+- immutable v0.1.3 live release identity;
+- v0.1/v0 compatibility aliases recorded at the exact verified v0.1.3 commit;
+- live Marketplace verification and alias clone evidence;
 - Free product boundary;
-- separate EULA and proprietary source-available license model;
-- trademark, third-party notices, contribution rights, customer-content ownership;
-- zero npm runtime dependencies and lockfile consistency;
-- explicit client-data allowlist and secure exporter/summary path;
+- EULA / proprietary source-available licensing / trademark / contribution / Customer Content ownership controls;
+- zero runtime npm dependencies;
+- no runtime network client, telemetry, dynamic eval, shell invocation, embedded credentials, or private signing material;
+- explicit client-data allowlist;
+- no source contents, absolute workspace paths, full repository inventory, or GitHub repository identity in diagnostics;
 - bounded local git subprocess only;
-- no runtime network client, telemetry, dynamic eval, or embedded credentials;
-- candidate remains NOT LIVE until Marketplace publication is independently verified.
+- secure atomic diagnostic replacement;
+- no future alias movement without a separately verified replacement release.
 
 ## Current state
 
-v0.1.3 candidate gate.
+v0.1.3 live Marketplace baseline.
 
 ## Regression trigger
 
-Any failed check blocks merge, exact-tag creation, Marketplace publication, or alias movement.
+Any failed release check blocks future release promotion, exact-tag creation, or compatibility-alias movement.

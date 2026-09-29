@@ -1,6 +1,6 @@
 # CHANGELOG.node.md — Living Architecture Nodes Action
 
-## 2026-09-29 — v0.1.3 licensing/client-data/security candidate
+## 2026-09-29 — v0.1.3 licensing/client-data/security release
 
 ### Licensing / IP
 
@@ -29,9 +29,10 @@
 
 ### Release governance
 
-- v0.1.2 remains immutable and live.
-- v0/v0.1 remain pinned to v0.1.2 until v0.1.3 is verified live.
-- Manifest now separates live and candidate release state.
+- v0.1.3 published and independently verified live in GitHub Marketplace.
+- v0/v0.1 advanced to the exact v0.1.3 commit after live verification.
+- Both aliases independently clone-tested with 12/12 tests and release gate pass.
+- Manifest now records v0.1.3 as live with no active candidate release.
 - Release gate expanded to licensing/IP/privacy/security invariants.
 
 ## 2026-09-28 — v0.1.2 Marketplace hardening

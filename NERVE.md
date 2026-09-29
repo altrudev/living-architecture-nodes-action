@@ -2,13 +2,13 @@
 
 ## Current state
 
-**v0.1.2 remains LIVE and VERIFIED in GitHub Marketplace.**
+**v0.1.3 is LIVE and VERIFIED in GitHub Marketplace.**
 
 Verified immutable release commit:
 
-`c7d44c31bb7631d8aec357b94803d89246555e7e`
+`d1a4dbdefa0ce0b177e8f0835219a8625ec2db1b`
 
-**v0.1.3 is a candidate only** until the full promotion sequence completes.
+**v0.1 and v0 now resolve to the same verified v0.1.3 commit.**
 
 ## Cascade map
 
@@ -30,7 +30,7 @@ Verified immutable release commit:
 | `scripts/release-check.js` | merge/tag/Marketplace/alias movement | Promotion gate |
 | `release/marketplace-manifest.json` | release state/aliases/license/security | Machine source of truth |
 
-## v0.1.3 Frequency hardening
+## v0.1.3 Frequency hardening — promoted live
 
 - Added a separate Marketplace EULA and explicit proprietary source-available license model.
 - Preserved free official Action use while restricting repackaging, white-label distribution, competing hosted use, and confusing branding.
@@ -44,6 +44,8 @@ Verified immutable release commit:
 - Added private atomic diagnostic replacement and hard-link regression coverage.
 - Verified GitHub private vulnerability reporting is enabled.
 - Runtime npm dependencies remain zero.
+- Public Marketplace listing verified v0.1.3 as Latest.
+- v0.1 and v0 aliases advanced only after live verification and independently clone-tested.
 - Local git use is documented as bounded `execFileSync`, no shell, no network command.
 
 ## Promotion order
