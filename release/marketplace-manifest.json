@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "product": "living-architecture-nodes-action",
   "repository": "altrudev/living-architecture-nodes-action",
   "repository_visibility_required": "public",
@@ -10,36 +10,71 @@
     "code-quality",
     "utilities"
   ],
-  "version": "0.1.2",
-  "release_tag": "v0.1.2",
-  "release_commit": "c7d44c31bb7631d8aec357b94803d89246555e7e",
-  "floating_tags": [
-    "v0.1",
-    "v0"
-  ],
   "pricing": "free",
   "paid_entitlements_enabled": false,
-  "runtime_network_access": false,
-  "telemetry": false,
-  "source_contents_uploaded": false,
-  "release_channel": "stable-basic",
-  "marketplace_publication_verified": true,
-  "marketplace_publish_allowed": true,
-  "marketplace_publish_blockers": [],
-  "compatibility_aliases_ready": true,
-  "alias_target_commit": "c7d44c31bb7631d8aec357b94803d89246555e7e",
-  "release_notes_source": "CHANGELOG.md",
-  "privacy_source": "PRIVACY.md",
-  "support_source": "SUPPORT.md",
-  "security_source": "SECURITY.md",
-  "compatibility_aliases_verified": true,
-  "compatibility_alias_refs": {
-    "v0.1": "c7d44c31bb7631d8aec357b94803d89246555e7e",
-    "v0": "c7d44c31bb7631d8aec357b94803d89246555e7e"
+  "live_release": {
+    "version": "0.1.2",
+    "tag": "v0.1.2",
+    "commit": "c7d44c31bb7631d8aec357b94803d89246555e7e",
+    "marketplace_verified": true
   },
-  "alias_verification": {
-    "method": "git-ref-resolution-and-clone-smoke-test",
-    "tests_passed_per_alias": 7,
-    "marketplace_release_check": "VERIFIED"
-  }
+  "candidate_release": {
+    "version": "0.1.3",
+    "tag": "v0.1.3",
+    "marketplace_verified": false,
+    "marketplace_publish_allowed": false,
+    "marketplace_publish_blockers": [
+      "Run the final Frequency verification from the merged main commit",
+      "Create the immutable v0.1.3 release from that verified commit",
+      "GitHub Marketplace release UI must validate the Action metadata",
+      "Publish this Action to the GitHub Marketplace must be selected",
+      "Verify the public Marketplace listing shows v0.1.3 as Latest"
+    ]
+  },
+  "compatibility_aliases": {
+    "v0.1": "c7d44c31bb7631d8aec357b94803d89246555e7e",
+    "v0": "c7d44c31bb7631d8aec357b94803d89246555e7e",
+    "verified": true,
+    "movement_allowed": false,
+    "movement_rule": "Advance only after the replacement immutable release is published and independently verified live in GitHub Marketplace."
+  },
+  "runtime_security": {
+    "npm_runtime_dependencies": 0,
+    "runtime_network_access": false,
+    "telemetry": false,
+    "source_contents_read_by_scanner": false,
+    "shell_invocation": false,
+    "local_git_subprocess": true,
+    "private_vulnerability_reporting": true
+  },
+  "client_data": {
+    "diagnostic_schema": "explicit-allowlist",
+    "absolute_workspace_paths_exported": false,
+    "full_repository_inventory_exported": false,
+    "source_contents_exported": false,
+    "repository_identity_metadata_exported": false,
+    "secret_metadata_redaction": true,
+    "markdown_path_escaping": true,
+    "atomic_diagnostic_replacement": true,
+    "posix_private_file_mode": "0600",
+    "posix_new_directory_mode": "0700"
+  },
+  "licensing": {
+    "model": "source-available-proprietary",
+    "eula_required": true,
+    "eula_file": "EULA.md",
+    "eula_version": "1.0",
+    "license_file": "LICENSE",
+    "trademark_file": "TRADEMARK.md",
+    "third_party_notices_file": "THIRD_PARTY_NOTICES.md",
+    "contribution_terms_file": "CONTRIBUTING.md",
+    "customer_content_ownership_retained": true,
+    "official_action_use_free": true,
+    "modified_competing_redistribution_allowed": false,
+    "hosted_competing_service_allowed": false
+  },
+  "privacy_source": "PRIVACY.md",
+  "security_source": "SECURITY.md",
+  "support_source": "SUPPORT.md",
+  "release_notes_source": "CHANGELOG.md"
 }

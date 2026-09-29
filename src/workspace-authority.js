@@ -1,7 +1,9 @@
 'use strict';
 
 const fs = require('fs');
+const fsConstants = fs.constants;
 const path = require('path');
+const crypto = require('crypto');
 
 function isWithin(root, candidate) {
   const relative = path.relative(root, candidate);
@@ -67,9 +69,67 @@ function resolveExportDir(workspace, exportPath) {
   return resolveInside(workspace, exportPath || '.lan-action');
 }
 
+function noFollowFlag() {
+  return typeof fsConstants.O_NOFOLLOW === 'number' ? fsConstants.O_NOFOLLOW : 0;
+}
+
+async function ensurePrivateDirectory(workspace, relativeDir) {
+  const target = resolveInside(workspace, relativeDir || '.');
+  const existed = fs.existsSync(target);
+  await fs.promises.mkdir(target, { recursive: true, mode: 0o700 });
+
+  const verified = resolveInside(workspace, relativeDir || '.', { mustExist: true });
+  if (!existed && process.platform !== 'win32') {
+    await fs.promises.chmod(verified, 0o700);
+  }
+  return verified;
+}
+
+async function writeAtomicWorkspaceFile(workspace, relativePath, content, mode = 0o600) {
+  if (path.isAbsolute(relativePath)) {
+    throw new Error('LAN workspace authority denied: write target must be relative');
+  }
+
+  const parentRel = path.dirname(relativePath);
+  const parent = await ensurePrivateDirectory(workspace, parentRel === '.' ? '' : parentRel);
+  const base = path.basename(relativePath);
+  const tempName = '.' + base + '.lan-tmp-' + crypto.randomBytes(8).toString('hex');
+  const tempRel = path.join(parentRel, tempName);
+  const tempPath = resolveInside(workspace, tempRel);
+  const flags = fsConstants.O_WRONLY | fsConstants.O_CREAT | fsConstants.O_EXCL | noFollowFlag();
+
+  let handle;
+  try {
+    handle = await fs.promises.open(tempPath, flags, mode);
+    await handle.writeFile(content, 'utf8');
+    await handle.sync();
+    if (process.platform !== 'win32') await handle.chmod(mode);
+    await handle.close();
+    handle = null;
+
+    const parentAgain = resolveInside(workspace, parentRel === '.' ? '' : parentRel, { mustExist: true });
+    if (parentAgain !== parent) {
+      throw new Error('LAN workspace authority denied: destination parent changed during write');
+    }
+
+    const finalPath = resolveInside(workspace, relativePath);
+    await fs.promises.rename(tempPath, finalPath);
+    return finalPath;
+  } finally {
+    if (handle) await handle.close();
+    try {
+      await fs.promises.unlink(tempPath);
+    } catch (_) {
+      // Temp path was renamed or already removed.
+    }
+  }
+}
+
 module.exports = {
   isWithin,
   resolveInside,
   resolveWorkspace,
-  resolveExportDir
+  resolveExportDir,
+  ensurePrivateDirectory,
+  writeAtomicWorkspaceFile
 };

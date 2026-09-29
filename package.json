@@ -1,8 +1,8 @@
 {
   "name": "living-architecture-nodes-action",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
-  "description": "Free GitHub Action for Living Architecture Nodes repository checks and local diagnostic handoff exports.",
+  "description": "Free GitHub Action for Living Architecture Nodes repository checks and client-safe local diagnostic handoff exports.",
   "type": "commonjs",
   "main": "src/index.js",
   "scripts": {
@@ -24,5 +24,5 @@
     "diagnostic-export"
   ],
   "author": "Valentyn Rukhaylo / Altru.dev",
-  "license": "SEE LICENSE"
+  "license": "SEE LICENSE IN LICENSE"
 }

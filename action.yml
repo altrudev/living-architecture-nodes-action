@@ -1,5 +1,5 @@
 name: "Living Architecture Nodes Check"
-description: "Check repository architecture memory, missing/stale nodes, and export local AI/dev diagnostic reports."
+description: "Check repository architecture memory, missing/stale nodes, and export client-safe local AI/dev diagnostic reports."
 author: "Valentyn Rukhaylo / Altru.dev"
 
 branding:
@@ -46,9 +46,9 @@ outputs:
   status:
     description: "healthy, warning, or failed for the configured basic CI policy."
   verification_scope:
-    description: "Verification scope executed by this Action release."
+    description: "Verification scope executed by this Action."
   semantic_architecture_status:
-    description: "Semantic architecture verification status. v0.1.2 reports NOT_VERIFIED."
+    description: "Semantic architecture verification status. The Free Action reports NOT_VERIFIED."
   missing_required_count:
     description: "Number of missing required root artifacts."
   missing_node_count:
@@ -56,9 +56,9 @@ outputs:
   dirty_node_count:
     description: "Number of changed source files whose matching .node.md file was not changed."
   diagnostic_json:
-    description: "Path to local diagnostic JSON export."
+    description: "Path to client-safe local diagnostic JSON export."
   diagnostic_markdown:
-    description: "Path to local diagnostic Markdown export."
+    description: "Path to client-safe local diagnostic Markdown export."
 
 runs:
   using: "node24"

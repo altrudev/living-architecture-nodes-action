@@ -2,23 +2,26 @@
 
 ## Purpose
 
-Deterministic Frequency gate for the GitHub Marketplace Action release.
+Deterministic Frequency gate for candidate promotion to GitHub Marketplace.
 
 ## Checks
 
-- exactly one root Action metadata file;
-- Action name, branding, runtime, entrypoint, and outputs;
-- no raw license-key input;
-- version/tag/documentation synchronization;
+- exact Action metadata and Node 24 entrypoint;
+- candidate package version synchronization;
+- current live release immutability and alias freeze;
 - Free product boundary;
-- no runtime network capability/literals in src;
-- no obvious embedded credentials/private keys;
-- Marketplace publication remains blocked until GitHub release UI validation.
+- separate EULA and proprietary source-available license model;
+- trademark, third-party notices, contribution rights, customer-content ownership;
+- zero npm runtime dependencies and lockfile consistency;
+- explicit client-data allowlist and secure exporter/summary path;
+- bounded local git subprocess only;
+- no runtime network client, telemetry, dynamic eval, or embedded credentials;
+- candidate remains NOT LIVE until Marketplace publication is independently verified.
 
 ## Current state
 
-v0.1.2 Marketplace candidate.
+v0.1.3 candidate gate.
 
 ## Regression trigger
 
-Any failed release check blocks merge, tagging, or Marketplace promotion.
+Any failed check blocks merge, exact-tag creation, Marketplace publication, or alias movement.

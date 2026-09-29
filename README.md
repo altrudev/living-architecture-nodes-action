@@ -2,7 +2,7 @@
 
 **Free GitHub Action for keeping repository architecture memory from silently falling behind the code.**
 
-Living Architecture Nodes Action checks the repository-local architecture-memory structure used by Living Architecture Nodes and produces CI-friendly diagnostics for humans and AI-assisted development workflows.
+Living Architecture Nodes Action checks repository-local architecture memory and produces CI-friendly diagnostics for humans and AI-assisted development workflows.
 
 ## What it checks
 
@@ -11,11 +11,11 @@ Living Architecture Nodes Action checks the repository-local architecture-memory
 - orphan node files;
 - changed source files whose matching node memory was not updated;
 - configurable CI failure thresholds;
-- local JSON and Markdown diagnostic handoff reports.
+- client-safe local JSON and Markdown diagnostic handoff reports.
 
 The maintenance score is a **heuristic CI signal, not a semantic architecture verdict**.
 
-The free Action does not claim to understand whether the architecture itself is correct. In v0.1.2:
+The Free Action does not claim to understand whether the architecture itself is correct:
 
 ```text
 Verification scope: basic-local-ci
@@ -34,9 +34,27 @@ This is a **Free GitHub Action**.
 - no remote API calls;
 - no source-code upload;
 - no paid capability gating in the Action;
-- diagnostic reports are written only to the checked repository workspace.
+- zero npm runtime dependencies;
+- diagnostic reports are written only inside the checked repository workspace.
 
-Future commercial LAN capabilities remain separate from this free Marketplace Action.
+"Free" refers to price. The official implementation is **source-available proprietary software**, not an open-source license. See [EULA.md](EULA.md) and [LICENSE](LICENSE).
+
+Future commercial LAN capabilities remain separate from this Free Marketplace Action.
+
+## Client-data boundary
+
+The Action scans repository structure and paths; it does not read source-file contents as part of its architecture-memory scan.
+
+Diagnostic handoffs use an explicit allowlist. They contain counts plus relative paths associated with findings, not:
+
+- absolute runner/workspace paths;
+- full source-file/node-file inventories;
+- source-file contents;
+- GitHub repository identity or environment metadata.
+
+Secret-shaped path metadata is defensively redacted before JSON and Markdown output, and path values are escaped before Markdown rendering.
+
+See [PRIVACY.md](PRIVACY.md) and [SECURITY.md](SECURITY.md).
 
 ## Basic workflow
 
@@ -64,7 +82,7 @@ jobs:
           fetch-depth: 0
 
       - name: Check architecture memory
-        uses: altrudev/living-architecture-nodes-action@v0.1.2
+        uses: altrudev/living-architecture-nodes-action@v0
         with:
           fail_on: missing-required
           export_path: .lan-action
@@ -77,7 +95,7 @@ jobs:
           path: .lan-action/
 ```
 
-For highest supply-chain assurance, pin third-party Actions to full commit SHAs in your own workflow.
+For highest supply-chain assurance, pin third-party Actions and this Action to an exact verified release tag or full commit SHA.
 
 ## Inputs
 
@@ -90,7 +108,7 @@ For highest supply-chain assurance, pin third-party Actions to full commit SHAs 
 | `source_extensions` | common source extensions | Comma-separated source extensions to scan. |
 | `exclude_dirs` | generated/vendor folders | Comma-separated folder names to ignore. |
 | `export_path` | `.lan-action` | Workspace-relative diagnostic output folder. |
-| `write_summary` | `true` | Write a GitHub step summary. |
+| `write_summary` | `true` | Write a client-safe GitHub step summary. |
 
 ## Outputs
 
@@ -98,8 +116,8 @@ For highest supply-chain assurance, pin third-party Actions to full commit SHAs 
 |---|---|
 | `health_score` | Heuristic architecture-memory maintenance score, 0–100. |
 | `status` | Basic CI policy status: `healthy`, `warning`, or `failed`. |
-| `verification_scope` | Executed verification scope; v0.1.2 is `basic-local-ci`. |
-| `semantic_architecture_status` | `NOT_VERIFIED` in v0.1.2. |
+| `verification_scope` | Executed verification scope: `basic-local-ci`. |
+| `semantic_architecture_status` | `NOT_VERIFIED` for the Free Action. |
 | `missing_required_count` | Missing required root artifacts. |
 | `missing_node_count` | Source files missing companion nodes. |
 | `dirty_node_count` | Changed source files without matching node updates. |
@@ -120,16 +138,7 @@ The Action treats `GITHUB_WORKSPACE` as its filesystem authority root.
 
 A configured `workspace` may select a repository subdirectory but cannot escape the repository root. Diagnostic `export_path` must remain inside the selected workspace. Parent traversal, absolute export paths, and symbolic-link escape are rejected.
 
-## Diagnostic exports
-
-The Action writes:
-
-```text
-.lan-action/living-architecture-diagnostic.json
-.lan-action/living-architecture-diagnostic.md
-```
-
-Reports contain structure/status metadata and file paths, not source-file contents.
+Diagnostics are written through private temporary files followed by atomic same-directory replacement. On POSIX systems, newly created diagnostic files use private permissions and newly created export directories are restricted to the current user.
 
 ## Git history
 
@@ -143,18 +152,27 @@ Changed-file drift checks work best with:
 
 Shallow history can reduce the available comparison range.
 
-## Product boundary
+## Product and licensing boundary
 
-The GitHub Action is the **free CI surface** for Living Architecture Nodes.
+The GitHub Action is the **Free CI surface** for Living Architecture Nodes.
 
-It is not the private commercial LAN engine, the VS Code extension, a general AI-agent runtime, or a license server.
+It is not the private commercial LAN engine, the VS Code extension, a general AI-agent runtime, a hosted LAN service, or a license server.
+
+Official Action use is governed by:
+
+- [End User License Agreement](EULA.md)
+- [License notice](LICENSE)
+- [Trademark notice](TRADEMARK.md)
+- [Third-party notices](THIRD_PARTY_NOTICES.md)
+- [Contribution terms](CONTRIBUTING.md)
+
+Your repository and Customer Content remain yours. Use of the Action does not transfer ownership of repository content to Altru.dev.
 
 ## Privacy, security, support
 
 - [Privacy](PRIVACY.md)
 - [Security](SECURITY.md)
 - [Support](SUPPORT.md)
-- [License](LICENSE)
 - [Changelog](CHANGELOG.md)
 
 Developed by **Valentyn Rukhaylo / Altru.dev**.

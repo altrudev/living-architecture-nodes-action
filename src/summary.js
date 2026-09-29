@@ -4,27 +4,33 @@ function plural(count, singular, pluralWord) {
   return count === 1 ? singular : (pluralWord || singular + 's');
 }
 
-function renderList(items, renderItem) {
-  if (!items || items.length === 0) return '- None\n';
-  return items.map((item) => '- ' + (renderItem ? renderItem(item) : item)).join('\n') + '\n';
+function escapeMarkdownText(value) {
+  const placeholder = 'LANREDACTEDPLACEHOLDER7D9A';
+  return String(value)
+    .replace(/\[REDACTED\]/g, placeholder)
+    .replace(/[\r\n\t\0]/g, ' ')
+    .replace(/\\/g, '\\\\')
+    .replace(/([\`*_{}\[\]()#+.!<>|~-])/g, '\\$1')
+    .replace(new RegExp(placeholder, 'g'), '[REDACTED]');
 }
 
-function code(value) {
-  return String.fromCharCode(96) + value + String.fromCharCode(96);
+function renderList(items, renderItem) {
+  if (!items || items.length === 0) return '- None\n';
+  return items.map((item) => '- ' + (renderItem ? renderItem(item) : escapeMarkdownText(item))).join('\n') + '\n';
 }
 
 function renderMarkdownSummary(check) {
   const lines = [];
   lines.push('# Living Architecture Nodes Diagnostic Summary');
   lines.push('');
-  lines.push('Generated: ' + check.timestamp);
+  lines.push('Generated: ' + escapeMarkdownText(check.timestamp));
   lines.push('');
   lines.push('## Basic CI status');
   lines.push('');
-  lines.push('- Status: **' + check.status.toUpperCase() + '**');
+  lines.push('- Status: **' + escapeMarkdownText(check.status.toUpperCase()) + '**');
   lines.push('- Maintenance score: **' + check.healthScore + '/100** (heuristic, not a semantic architecture verdict)');
-  lines.push('- Verification scope: **' + check.verification.scope + '**');
-  lines.push('- Semantic architecture: **' + check.verification.semanticArchitecture.status + '**');
+  lines.push('- Verification scope: **' + escapeMarkdownText(check.verification.scope) + '**');
+  lines.push('- Semantic architecture: **' + escapeMarkdownText(check.verification.semanticArchitecture.status) + '**');
   lines.push('- Source files scanned: ' + check.sourceFileCount);
   lines.push('- Node files found: ' + check.nodeFileCount);
   lines.push('- Missing required artifacts: ' + check.missingRequired.length);
@@ -32,36 +38,46 @@ function renderMarkdownSummary(check) {
   lines.push('- Dirty nodes: ' + check.dirtyNodes.length);
   lines.push('- Orphan nodes: ' + check.orphanNodes.length);
   lines.push('');
+
   lines.push('## Missing required artifacts');
   lines.push('');
   lines.push(renderList(check.missingRequired));
+
   lines.push('## Missing node files');
   lines.push('');
-  lines.push(renderList(check.missingNodes, (item) => code(item.sourcePath) + ' needs ' + code(item.nodePath)));
+  lines.push(renderList(check.missingNodes, (item) =>
+    escapeMarkdownText(item.sourcePath) + ' needs ' + escapeMarkdownText(item.nodePath)
+  ));
+
   lines.push('## Dirty node risks');
   lines.push('');
-  lines.push(renderList(check.dirtyNodes, (item) => code(item.sourcePath) + ' changed without matching node update ' + code(item.nodePath)));
+  lines.push(renderList(check.dirtyNodes, (item) =>
+    escapeMarkdownText(item.sourcePath) + ' changed without matching node update ' + escapeMarkdownText(item.nodePath)
+  ));
+
   lines.push('## Orphan node files');
   lines.push('');
-  lines.push(renderList(check.orphanNodes, (item) => code(item)));
+  lines.push(renderList(check.orphanNodes));
+
   lines.push('## Suggested investigation order');
   lines.push('');
-
   if (check.missingRequired.length > 0) {
-    lines.push('1. Add missing required ' + plural(check.missingRequired.length, 'artifact') + ': ' + check.missingRequired.map(code).join(', ') + '.');
+    lines.push('- Add missing required ' + plural(check.missingRequired.length, 'artifact') + ': ' + check.missingRequired.map(escapeMarkdownText).join(', ') + '.');
   } else if (check.missingNodes.length > 0) {
-    lines.push('1. Add missing ' + code('.node.md') + ' companion files for source modules.');
+    lines.push('- Add missing .node.md companion files for source modules.');
   } else if (check.dirtyNodes.length > 0) {
-    lines.push('1. Review changed source files and update the matching ' + code('.node.md') + ' diagnostic/dynamic layers.');
+    lines.push('- Review changed source files and update the matching .node.md diagnostic/dynamic layers.');
   } else {
-    lines.push('1. No immediate basic architecture-memory blockers detected.');
+    lines.push('- No immediate architecture-memory blockers detected.');
   }
 
-  lines.push('2. Review ' + code('ARCH.md') + ' for intent vs reality gaps.');
-  lines.push('3. Review ' + code('NERVE.md') + ' for cascade risks and recurring bug patterns.');
-  lines.push('4. Update ' + code('CHANGELOG.node.md') + ' after cross-cutting changes.');
+  lines.push('- Review ARCH.md for intent vs reality gaps.');
+  lines.push('- Review NERVE.md for cascade risks and recurring bug patterns.');
+  lines.push('- Update CHANGELOG.node.md after cross-cutting changes.');
   lines.push('');
   lines.push('> NOT_VERIFIED means that semantic architecture verification was not executed. It does not mean failed or unsafe.');
+  lines.push('');
+  lines.push('Privacy: source contents, absolute runner/workspace paths, and full repository inventories are not included in this handoff.');
   lines.push('');
   lines.push('---');
   lines.push('Generated by Living Architecture Nodes Action.');
@@ -83,4 +99,4 @@ function renderConsoleSummary(check) {
   ].join('\n');
 }
 
-module.exports = { renderMarkdownSummary, renderConsoleSummary };
+module.exports = { renderMarkdownSummary, renderConsoleSummary, escapeMarkdownText };

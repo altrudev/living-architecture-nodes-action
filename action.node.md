@@ -2,22 +2,22 @@
 
 ## Purpose
 
-Public GitHub Action metadata and execution contract for the free Living Architecture Nodes CI surface.
+Public GitHub Action metadata and execution contract for the Free Living Architecture Nodes CI surface.
 
 ## Contracts
 
-- one root Action metadata file;
+- exactly one root Action metadata file;
 - Node 24 runtime;
 - no raw paid-license input;
 - basic CI outputs stay distinct from semantic verification;
-- no remote service or telemetry requirement.
+- diagnostic outputs are described as client-safe and local;
+- no remote service or telemetry requirement;
+- permanent Marketplace copy avoids patch-version drift.
 
 ## Current state
 
-v0.1.2 Marketplace candidate.
-
-Recent changes: removed the reserved license input, added verification scope outputs, and clarified repository-bound workspace/export paths.
+v0.1.3 licensing/client-data/security hardening candidate. v0.1.2 remains the verified live Marketplace release until promotion completes.
 
 ## Regression triggers
 
-Public outputs drift from runtime behavior; network access appears; a credential input is added; runtime/entrypoint changes without release review.
+Public outputs drift from runtime behavior, network access appears, a credential input is added, patch-version claims enter permanent metadata, or runtime/entrypoint changes without release review.
