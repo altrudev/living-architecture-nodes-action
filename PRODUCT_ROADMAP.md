@@ -1,6 +1,6 @@
 # Product Roadmap — Living Architecture Nodes Action
 
-## v0.1.3 — licensing, privacy, and security hardening
+## v0.1.3 — live licensing, privacy, and security baseline
 
 Candidate work completed in this line:
 
@@ -16,7 +16,7 @@ Candidate work completed in this line:
 - private vulnerability reporting;
 - zero npm runtime dependencies.
 
-v0.1.3 remains a candidate until its immutable Marketplace release is independently verified live.
+v0.1.3 is now verified live in GitHub Marketplace. v0.1 and v0 point to the same immutable verified release commit.
 
 ## v0.2.x — better Free CI intelligence
 

@@ -13,30 +13,25 @@
   "pricing": "free",
   "paid_entitlements_enabled": false,
   "live_release": {
-    "version": "0.1.2",
-    "tag": "v0.1.2",
-    "commit": "c7d44c31bb7631d8aec357b94803d89246555e7e",
-    "marketplace_verified": true
-  },
-  "candidate_release": {
     "version": "0.1.3",
     "tag": "v0.1.3",
-    "marketplace_verified": false,
-    "marketplace_publish_allowed": false,
-    "marketplace_publish_blockers": [
-      "Run the final Frequency verification from the merged main commit",
-      "Create the immutable v0.1.3 release from that verified commit",
-      "GitHub Marketplace release UI must validate the Action metadata",
-      "Publish this Action to the GitHub Marketplace must be selected",
-      "Verify the public Marketplace listing shows v0.1.3 as Latest"
-    ]
+    "commit": "d1a4dbdefa0ce0b177e8f0835219a8625ec2db1b",
+    "marketplace_verified": true
   },
+  "candidate_release": null,
   "compatibility_aliases": {
-    "v0.1": "c7d44c31bb7631d8aec357b94803d89246555e7e",
-    "v0": "c7d44c31bb7631d8aec357b94803d89246555e7e",
+    "v0.1": "d1a4dbdefa0ce0b177e8f0835219a8625ec2db1b",
+    "v0": "d1a4dbdefa0ce0b177e8f0835219a8625ec2db1b",
     "verified": true,
     "movement_allowed": false,
-    "movement_rule": "Advance only after the replacement immutable release is published and independently verified live in GitHub Marketplace."
+    "movement_rule": "Advance only after a replacement immutable release is published and independently verified live in GitHub Marketplace."
+  },
+  "promotion_evidence": {
+    "marketplace_latest_verified": true,
+    "alias_v0_1_clone_verified": true,
+    "alias_v0_clone_verified": true,
+    "tests_per_alias": 12,
+    "npm_audit_vulnerabilities": 0
   },
   "runtime_security": {
     "npm_runtime_dependencies": 0,
